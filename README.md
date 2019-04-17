@@ -12,6 +12,7 @@ Class `Iri` helps you build a URI and then modify its
 parts via a simple fluent interface:
 
 ```ruby
+require 'iri'
 url = Iri.new('http://google.com/')
   .add(q: 'books about OOP', limit: 50)
   .del(:q) # remove this query parameter
