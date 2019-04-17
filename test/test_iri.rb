@@ -78,6 +78,13 @@ class IriTest < Minitest::Test
     )
   end
 
+  def test_removes_query_and_path
+    assert_equal(
+      'http://localhost/',
+      Iri.new('http://localhost/hey?i=8#test').cut.to_s
+    )
+  end
+
   def test_adds_query_param
     assert_equal(
       'http://google/?a=1&a=3&b=2',

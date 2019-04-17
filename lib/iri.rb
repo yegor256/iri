@@ -75,6 +75,7 @@ class Iri
     end
   end
 
+  # Replace the query argument(s).
   def over(hash)
     modify_query do |params|
       hash.each do |k, v|
@@ -84,33 +85,47 @@ class Iri
     end
   end
 
+  # Replace the scheme.
   def scheme(val)
     modify do |c|
       c.scheme = val
     end
   end
 
+  # Replace the host.
   def host(val)
     modify do |c|
       c.host = val
     end
   end
 
+  # Replace the port.
   def port(val)
     modify do |c|
       c.port = val
     end
   end
 
+  # Replace the path part of the URI.
   def path(val)
     modify do |c|
       c.path = val
     end
   end
 
+  # Replace the query part of the URI.
   def query(val)
     modify do |c|
       c.query = val
+    end
+  end
+
+  # Remove the entire path+query+fragment part.
+  def cut(path = '/')
+    modify do |c|
+      c.query = nil
+      c.path = path
+      c.fragment = nil
     end
   end
 
