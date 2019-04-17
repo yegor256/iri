@@ -3,9 +3,9 @@
 [![We recommend RubyMine](http://www.elegantobjects.org/rubymine.svg)](https://www.jetbrains.com/ruby/)
 
 [![Build Status](https://travis-ci.org/yegor256/iri.svg)](https://travis-ci.org/yegor256/iri)
-[![Build status](https://ci.appveyor.com/api/projects/status/7eday736u9phnjiy?svg=true)](https://ci.appveyor.com/project/yegor256/iri)
+[![Build status](https://ci.appveyor.com/api/projects/status/5hj65olpn2tds4al?svg=true)](https://ci.appveyor.com/project/yegor256/iri)
 [![Gem Version](https://badge.fury.io/rb/iri.svg)](http://badge.fury.io/rb/iri)
-[![Maintainability](https://api.codeclimate.com/v1/badges/c136afe340fa94f14696/maintainability)](https://codeclimate.com/github/yegor256/iri/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/7018d2fe438103828685/maintainability)](https://codeclimate.com/github/yegor256/iri/maintainability)
 [![Yard Docs](http://img.shields.io/badge/yard-docs-blue.svg)](http://rubydoc.info/github/yegor256/iri/master/frames)
 
 Class `Iri` helps you build a URI and then modify its
@@ -17,10 +17,10 @@ url = Iri.new('http://google.com/')
   .del(:q) # remove this query parameter
   .del('limit') # remove this one too
   .over(q: 'books about tennis', limit: 10) # replace these params
-  .scheme('https')
-  .host('localhost')
-  .port('443')
-  .to_s
+  .scheme('https') # replace 'http' with 'https'
+  .host('localhost') # replace the host name
+  .port('443') # replace the port
+  .to_s # convert it to a string
 ```
 
 Install it:
@@ -37,7 +37,7 @@ gem 'iri'
 
 That's it.
 
-# How to contribute
+## How to contribute
 
 Read [these guidelines](https://www.yegor256.com/2014/04/15/github-guidelines.html).
 Make sure you build is green before you contribute
