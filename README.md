@@ -35,6 +35,16 @@ Or add this to your `Gemfile`:
 gem 'iri'
 ```
 
+Pay attention, it is not a parser. The only functionality this gem provides
+is _building_ URIs. It is very convenient to use inside
+[HAML](http://haml.info/tutorial.html), for example:
+
+```haml
+- iri = Iri.new(request.url)
+%a{href: iri.over(offset: offset + 10)} Next Page
+%a{href: iri.over(offset: offset - 10)} Previous Page
+```
+
 That's it.
 
 ## How to contribute

@@ -31,7 +31,6 @@ require_relative '../lib/iri'
 # License:: MIT
 class IriTest < Minitest::Test
   def test_builds_uri
-    skip
     url = Iri.new('http://google.com/')
       .add(q: 'books about OOP', limit: 50)
       .del(:q)
@@ -41,6 +40,52 @@ class IriTest < Minitest::Test
       .host('localhost')
       .port('443')
       .to_s
-    assert_equal('https://localhost:443/q=books%20about%20tennis&limit=10', url)
+    assert_equal('https://localhost:443/?q=books+about+tennis&limit=10', url)
+  end
+
+  def test_replaces_scheme
+    assert_equal(
+      'https://google.com/',
+      Iri.new('http://google.com/').scheme('https').to_s
+    )
+  end
+
+  def test_replaces_host
+    assert_equal(
+      'http://localhost/',
+      Iri.new('http://google.com/').host('localhost').to_s
+    )
+  end
+
+  def test_replaces_port
+    assert_equal(
+      'http://localhost:443/',
+      Iri.new('http://localhost/').port(443).to_s
+    )
+  end
+
+  def test_adds_query_param
+    assert_equal(
+      'http://google/?a=1&a=3&b=2',
+      Iri.new('http://google/').add(a: 1, b: 2).add(a: 3).to_s
+    )
+    assert_equal(
+      'http://google/?%D0%BF%D1%80%D0%B8%D0%B2%D0%B5%D1%82+%D0%B4%D1%80%D1%83%D0%B3=%D0%BA%D0%B0%D0%BA+%D0%B4%D0%B5%D0%BB%D0%B0%3F',
+      Iri.new('http://google/').add('привет друг' => 'как дела?').to_s
+    )
+  end
+
+  def test_removes_query_param
+    assert_equal(
+      'http://google/?b=2&c=3',
+      Iri.new('http://google/?a=1&b=2&c=3&a=3').del('a').del('x').to_s
+    )
+  end
+
+  def test_replaces_query_param
+    assert_equal(
+      'http://google/?a=hey&b=2&c=3',
+      Iri.new('http://google/?a=1&b=2&c=3&a=33').over(a: 'hey').to_s
+    )
   end
 end

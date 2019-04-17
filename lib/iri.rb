@@ -22,6 +22,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+require 'uri'
+require 'cgi'
+
 # It is a simple URI builder.
 #
 #  require 'iri'
@@ -44,8 +47,74 @@
 class Iri
   # Makes a new object.
   def initialize(uri)
-    @uri = uri
+    @uri = URI(uri)
   end
 
-  # to be written...
+  def to_s
+    @uri.to_s
+  end
+
+  def to_uri
+    @uri.clone
+  end
+
+  def add(hash)
+    modify_query do |params|
+      hash.each do |k, v|
+        params[k.to_s] = [] unless params[k.to_s]
+        params[k.to_s] << v
+      end
+    end
+  end
+
+  def del(*keys)
+    modify_query do |params|
+      keys.each do |k|
+        params.delete(k.to_s)
+      end
+    end
+  end
+
+  def over(hash)
+    modify_query do |params|
+      hash.each do |k, v|
+        params[k.to_s] = [] unless params[k]
+        params[k.to_s] = [v]
+      end
+    end
+  end
+
+  def scheme(val)
+    modify do |c|
+      c.scheme = val
+    end
+  end
+
+  def host(val)
+    modify do |c|
+      c.host = val
+    end
+  end
+
+  def port(val)
+    modify do |c|
+      c.port = val
+    end
+  end
+
+  private
+
+  def modify
+    c = @uri.clone
+    yield c
+    Iri.new(c)
+  end
+
+  def modify_query
+    modify do |c|
+      params = CGI.parse(@uri.query || '').map { |p, a| [p.to_s, a.clone] }.to_h
+      yield(params)
+      c.query = URI.encode_www_form(params)
+    end
+  end
 end
