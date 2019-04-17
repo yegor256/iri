@@ -102,6 +102,18 @@ class Iri
     end
   end
 
+  def path(val)
+    modify do |c|
+      c.path = val
+    end
+  end
+
+  def query(val)
+    modify do |c|
+      c.query = val
+    end
+  end
+
   private
 
   def modify

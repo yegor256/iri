@@ -64,6 +64,20 @@ class IriTest < Minitest::Test
     )
   end
 
+  def test_sets_path
+    assert_equal(
+      'http://localhost/hey/you?i=8#test',
+      Iri.new('http://localhost/hey?i=8#test').path('/hey/you').to_s
+    )
+  end
+
+  def test_sets_query
+    assert_equal(
+      'http://localhost/hey?t=1#test',
+      Iri.new('http://localhost/hey?i=8#test').query('t=1').to_s
+    )
+  end
+
   def test_adds_query_param
     assert_equal(
       'http://google/?a=1&a=3&b=2',
