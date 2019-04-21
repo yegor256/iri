@@ -1,12 +1,15 @@
 language: ruby
 rvm:
   - 2.6.0
+cache: bundler
 branches:
   only:
     - master
 install:
-  - bundle install
+  - travis_retry bundle update
+  - gem install pdd
 script:
-  - set -e
-  - rake
-
+  - pdd -f /dev/null
+  - bundle exec rake
+after_success:
+  - "bash <(curl -s https://codecov.io/bash)"
