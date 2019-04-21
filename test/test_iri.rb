@@ -43,6 +43,13 @@ class IriTest < Minitest::Test
     assert_equal('https://localhost:443/?q=books+about+tennis&limit=10', url)
   end
 
+  def test_starts_with_empty_uri
+    assert_equal(
+      'https:',
+      Iri.new.scheme('https').to_s
+    )
+  end
+
   def test_replaces_scheme
     assert_equal(
       'https://google.com/',

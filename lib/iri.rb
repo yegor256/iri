@@ -46,18 +46,32 @@ require 'cgi'
 # License:: MIT
 class Iri
   # Makes a new object.
-  def initialize(uri)
+  #
+  # You can even ignore the argument, which will produce an empty URI.
+  def initialize(uri = '')
     @uri = URI(uri)
   end
 
+  # Convert it to a string.
   def to_s
     @uri.to_s
   end
 
+  # Convert it to an object of class +URI+.
   def to_uri
     @uri.clone
   end
 
+  # Add a few query arguments. For example:
+  #
+  #  Iri.new('https://google.com').add(q: 'test', limit: 10)
+  #
+  # You can add many of them and they will all be present in the resulting
+  # URI, even if their names are the same. In order to make sure you have
+  # only one instance of a query argument, use +del+ first:
+  #
+  #  Iri.new('https://google.com').del(:q).add(q: 'test')
+  #
   def add(hash)
     modify_query do |params|
       hash.each do |k, v|
@@ -67,6 +81,10 @@ class Iri
     end
   end
 
+  # Delete a few query arguments. For example:
+  #
+  #  Iri.new('https://google.com?q=test').del(:q)
+  #
   def del(*keys)
     modify_query do |params|
       keys.each do |k|
@@ -75,7 +93,10 @@ class Iri
     end
   end
 
-  # Replace the query argument(s).
+  # Replace query argument(s).
+  #
+  #  Iri.new('https://google.com?q=test').over(q: 'hey you!')
+  #
   def over(hash)
     modify_query do |params|
       hash.each do |k, v|
@@ -120,7 +141,11 @@ class Iri
     end
   end
 
-  # Remove the entire path+query+fragment part.
+  # Remove the entire path+query+fragment part. For example:
+  #
+  #  Iri.new('https://google.com/a/b?q=test').cut('/hello')
+  #
+  # The result will contain "https://google.com/hello".
   def cut(path = '/')
     modify do |c|
       c.query = nil
