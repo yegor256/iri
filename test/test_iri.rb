@@ -71,6 +71,13 @@ class IriTest < Minitest::Test
     )
   end
 
+  def test_replaces_fragment
+    assert_equal(
+      'http://localhost/a/b#test',
+      Iri.new('http://localhost/a/b#before').fragment('test').to_s
+    )
+  end
+
   def test_sets_path
     assert_equal(
       'http://localhost/hey/you?i=8#test',

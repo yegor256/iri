@@ -134,6 +134,13 @@ class Iri
     end
   end
 
+  # Replace the fragment part of the URI.
+  def fragment(val)
+    modify do |c|
+      c.fragment = val
+    end
+  end
+
   # Replace the query part of the URI.
   def query(val)
     modify do |c|
