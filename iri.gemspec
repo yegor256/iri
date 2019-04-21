@@ -34,7 +34,8 @@ Gem::Specification.new do |s|
   s.version = '0.0.0'
   s.license = 'MIT'
   s.summary = 'Simple Immutable Ruby URI Builder'
-  s.description = 'Simple Immutable Ruby URI Builder'
+  s.description = 'Class Iri helps you build a URI and then modify its \
+parts via a simple fluent interface.'
   s.authors = ['Yegor Bugayenko']
   s.email = 'yegor256@gmail.com'
   s.homepage = 'http://github.com/yegor256/iri'
