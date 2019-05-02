@@ -117,6 +117,13 @@ class IriTest < Minitest::Test
     )
   end
 
+  def test_appends_path
+    assert_equal(
+      'http://google/a/b/z+%2F+7?x=3',
+      Iri.new('http://google/a/b?x=3').append('z / 7').to_s
+    )
+  end
+
   def test_replaces_query_param
     assert_equal(
       'http://google/?a=hey&b=2&c=3',

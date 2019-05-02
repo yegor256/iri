@@ -161,6 +161,17 @@ class Iri
     end
   end
 
+  # Append something new to the path:
+  #
+  #  Iri.new('https://google.com/a/b?q=test').append('/hello')
+  #
+  # The result will contain "https://google.com/a/b/hello?q=test".
+  def append(part)
+    modify do |c|
+      c.path = c.path + '/' + CGI.escape(part)
+    end
+  end
+
   private
 
   def modify
