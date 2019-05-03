@@ -137,7 +137,7 @@ class Iri
   # Replace the fragment part of the URI.
   def fragment(val)
     modify do |c|
-      c.fragment = val
+      c.fragment = val.to_s
     end
   end
 
