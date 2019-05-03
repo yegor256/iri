@@ -168,7 +168,7 @@ class Iri
   # The result will contain "https://google.com/a/b/hello?q=test".
   def append(part)
     modify do |c|
-      c.path = c.path + '/' + CGI.escape(part)
+      c.path = c.path + '/' + CGI.escape(part.to_s)
     end
   end
 

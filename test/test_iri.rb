@@ -119,8 +119,8 @@ class IriTest < Minitest::Test
 
   def test_appends_path
     assert_equal(
-      'http://google/a/b/z+%2F+7?x=3',
-      Iri.new('http://google/a/b?x=3').append('z / 7').to_s
+      'http://google/a/b/z+%2F+7/42?x=3',
+      Iri.new('http://google/a/b?x=3').append('z / 7').append(42).to_s
     )
   end
 
