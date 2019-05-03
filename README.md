@@ -54,6 +54,8 @@ is _building_ URIs. It is very convenient to use inside
 
 That's it.
 
+PS. See how I use it in this Sinatra web app: [yegor256/0rsk](https://github.com/yegor256/0rsk).
+
 ## How to contribute
 
 Read [these guidelines](https://www.yegor256.com/2014/04/15/github-guidelines.html).

@@ -92,7 +92,7 @@ class IriTest < Minitest::Test
     )
   end
 
-  def test_removes_query_and_path
+  def test_removes_path
     assert_equal(
       'http://localhost/',
       Iri.new('http://localhost/hey?i=8#test').cut.to_s
