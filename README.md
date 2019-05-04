@@ -1,4 +1,4 @@
-<img src="/logo.png" width="64px"/>
+<img src="/logo.svg" width="64px" height="64px"/>
 
 [![EO principles respected here](http://www.elegantobjects.org/badge.svg)](http://www.elegantobjects.org)
 [![DevOps By Rultor.com](http://www.rultor.com/b/yegor256/iri)](http://www.rultor.com/p/yegor256/iri)
