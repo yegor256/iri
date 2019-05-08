@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
     s.required_rubygems_version = Gem::Requirement.new('>= 0')
   end
   s.rubygems_version = '2.5'
-  s.required_ruby_version = '>=2.5'
+  s.required_ruby_version = '>=2.2'
   s.name = 'iri'
   s.version = '0.0.0'
   s.license = 'MIT'
