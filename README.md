@@ -45,7 +45,9 @@ gem 'iri'
 ```
 
 Pay attention, it is not a parser. The only functionality this gem provides
-is _building_ URIs. It is very convenient to use inside
+is _building_ URIs.
+
+It is very convenient to use inside
 [HAML](http://haml.info/tutorial.html), for example:
 
 ```haml
