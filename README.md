@@ -14,7 +14,7 @@
 [![Test Coverage](https://img.shields.io/codecov/c/github/yegor256/iri.svg)](https://codecov.io/github/yegor256/iri?branch=master)
 [![Hits-of-Code](https://hitsofcode.com/github/yegor256/iri)](https://hitsofcode.com/view/github/yegor256/iri)
 
-The class [`Iri`]](https://www.rubydoc.info/github/yegor256/iri/master/Iri)
+The class [`Iri`](https://www.rubydoc.info/github/yegor256/iri/master/Iri)
 helps you build a URI and then modify its
 parts via a simple [fluent interface](https://en.wikipedia.org/wiki/Fluent_interface):
 
