@@ -10,6 +10,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/7018d2fe438103828685/maintainability)](https://codeclimate.com/github/yegor256/iri/maintainability)
 [![Yard Docs](http://img.shields.io/badge/yard-docs-blue.svg)](http://rubydoc.info/github/yegor256/iri/master/frames)
 
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/yegor256/iri/blob/master/LICENSE.txt)
 [![Test Coverage](https://img.shields.io/codecov/c/github/yegor256/iri.svg)](https://codecov.io/github/yegor256/iri?branch=master)
 [![Hits-of-Code](https://hitsofcode.com/github/yegor256/iri)](https://hitsofcode.com/view/github/yegor256/iri)
 
@@ -56,7 +57,9 @@ It is very convenient to use inside
 %a{href: iri.over(offset: offset - 10)} Previous Page
 ```
 
-That's it.
+Of course, it's better to create the `iri` object only once per request
+and re-use it where you need. It's _immutable_, so you won't have any
+side-effects.
 
 PS. See how I use it in this Sinatra web app: [yegor256/0rsk](https://github.com/yegor256/0rsk).
 
