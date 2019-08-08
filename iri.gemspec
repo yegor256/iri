@@ -31,7 +31,7 @@ Gem::Specification.new do |s|
   s.rubygems_version = '2.5'
   s.required_ruby_version = '>=2.2'
   s.name = 'iri'
-  s.version = '0.0.0'
+  s.version = '0.4.3'
   s.license = 'MIT'
   s.summary = 'Simple Immutable Ruby URI Builder'
   s.description = 'Class Iri helps you build a URI and then modify its \
