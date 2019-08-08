@@ -3,9 +3,9 @@ assets:
 install: |-
   export GEM_HOME=~/.ruby
   export GEM_PATH=$GEM_HOME:$GEM_PATH
+  bundle install
 release:
   script: |-
-    bundle install
     bundle exec rake
     rm -rf *.gem
     sed -i "s/0\.0\.0/${tag}/g" iri.gemspec
@@ -14,13 +14,11 @@ release:
     gem build iri.gemspec
     chmod 0600 ../rubygems.yml
     gem push *.gem --config-file ../rubygems.yml
-  commanders:
-  - yegor256
-architect:
-- yegor256
 merge:
-  commanders: []
   script: |-
-    bundle install
     bundle exec rake
-deploy: {}
+deploy:
+  script: |-
+    echo Nothing to deploy
+    exit 1
+

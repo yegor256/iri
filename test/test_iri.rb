@@ -128,6 +128,17 @@ class IriTest < Minitest::Test
     )
   end
 
+  def test_appends_empty_path
+    assert_equal(
+      'http://google.com/hello/',
+      Iri.new('http://google.com/hello').append('').append('').to_s
+    )
+    assert_equal(
+      'http://google.com/test',
+      Iri.new('http://google.com/hello').cut.append('test').to_s
+    )
+  end
+
   def test_replaces_query_param
     assert_equal(
       'http://google/?a=hey&b=2&c=3',
