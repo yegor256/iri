@@ -45,11 +45,19 @@ require 'cgi'
 # Copyright:: Copyright (c) 2019 Yegor Bugayenko
 # License:: MIT
 class Iri
+  # When URI is not valid.
+  class InvalidURI < StandardError; end
+
   # Makes a new object.
   #
   # You can even ignore the argument, which will produce an empty URI.
-  def initialize(uri = '')
-    @uri = URI(uri)
+  #
+  # By default, this class will never throw any exceptions, even if your URI
+  # is not valid. It will just assume that the URI is"/". However,
+  # you can turn this mode off, by specifying safe as FALSE.
+  def initialize(uri = '', safe: true)
+    @uri = uri
+    @safe = safe
   end
 
   # Convert it to a string.
@@ -59,7 +67,7 @@ class Iri
 
   # Convert it to an object of class +URI+.
   def to_uri
-    @uri.clone
+    the_uri.clone
   end
 
   # Add a few query arguments. For example:
@@ -175,15 +183,24 @@ class Iri
 
   private
 
+  def the_uri
+    @the_uri ||= URI(@uri)
+  rescue URI::InvalidURIError => e
+    raise InvalidURI, e.message unless @safe
+    @the_uri = URI('/')
+  end
+
   def modify
-    c = @uri.clone
+    c = the_uri.clone
     yield c
     Iri.new(c)
   end
 
   def modify_query
     modify do |c|
-      params = CGI.parse(@uri.query || '').map { |p, a| [p.to_s, a.clone] }.to_h
+      params = CGI.parse(the_uri.query || '').map do |p, a|
+        [p.to_s, a.clone]
+      end.to_h
       yield(params)
       c.query = URI.encode_www_form(params)
     end
