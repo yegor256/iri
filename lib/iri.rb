@@ -70,7 +70,9 @@ class Iri
     the_uri.clone
   end
 
-  # Add a few query arguments. For example:
+  # Add a few query arguments.
+  #
+  # For example:
   #
   #  Iri.new('https://google.com').add(q: 'test', limit: 10)
   #
@@ -89,7 +91,9 @@ class Iri
     end
   end
 
-  # Delete a few query arguments. For example:
+  # Delete a few query arguments.
+  #
+  # For example:
   #
   #  Iri.new('https://google.com?q=test').del(:q)
   #
@@ -156,7 +160,9 @@ class Iri
     end
   end
 
-  # Remove the entire path+query+fragment part. For example:
+  # Remove the entire path+query+fragment part.
+  #
+  # For example:
   #
   #  Iri.new('https://google.com/a/b?q=test').cut('/hello')
   #
@@ -169,7 +175,9 @@ class Iri
     end
   end
 
-  # Append something new to the path:
+  # Append something new to the path.
+  #
+  # For example:
   #
   #  Iri.new('https://google.com/a/b?q=test').append('/hello')
   #
