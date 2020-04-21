@@ -138,6 +138,13 @@ class IriTest < Minitest::Test
     )
   end
 
+  def test_appends_to_empty_ending
+    assert_equal(
+      'http://google.com/hello',
+      Iri.new('http://google.com/').append('hello').to_s
+    )
+  end
+
   def test_appends_empty_path
     assert_equal(
       'http://google.com/hello/',
