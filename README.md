@@ -29,6 +29,8 @@ url = Iri.new('http://google.com/')
   .scheme('https') # replace 'http' with 'https'
   .host('localhost') # replace the host name
   .port('443') # replace the port
+  .fragment('page-4') # replaces the fragment part of the URI, after the '#'
+  .query('a=1&b=2') # replaces the entire query part of the URI
   .path('/new/path') # replace the path of the URI, leaving the query untouched
   .cut('/q') # replace everything after the host and port
   .to_s # convert it to a string
