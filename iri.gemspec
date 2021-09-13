@@ -38,7 +38,7 @@ Gem::Specification.new do |s|
 parts via a simple fluent interface.'
   s.authors = ['Yegor Bugayenko']
   s.email = 'yegor256@gmail.com'
-  s.homepage = 'http://github.com/yegor256/iri'
+  s.homepage = 'https://github.com/yegor256/iri'
   s.files = `git ls-files`.split($RS)
   s.test_files = s.files.grep(%r{^(test)/})
   s.rdoc_options = ['--charset=UTF-8']
