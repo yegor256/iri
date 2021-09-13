@@ -46,7 +46,7 @@ parts via a simple fluent interface.'
   s.add_development_dependency 'codecov', '0.2.11'
   s.add_development_dependency 'minitest', '5.11.3'
   s.add_development_dependency 'rake', '12.3.3'
-  s.add_development_dependency 'rdoc', '4.3.0'
+  s.add_development_dependency 'rdoc', '6.3.1'
   s.add_development_dependency 'rubocop', '0.62.0'
   s.add_development_dependency 'rubocop-rspec', '1.31.0'
 end
