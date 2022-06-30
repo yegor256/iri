@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-STDOUT.sync = true
+$stdout.sync = true
 
 require 'simplecov'
 SimpleCov.start
