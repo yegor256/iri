@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2019-2021 Yegor Bugayenko
+# Copyright (c) 2019-2022 Yegor Bugayenko
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the 'Software'), to deal
@@ -34,7 +34,7 @@ def version
   Gem::Specification.load(Dir['*.gemspec'].first).version
 end
 
-task default: %i[clean test rubocop]
+task default: %i[clean test rubocop copyright]
 
 require 'rake/testtask'
 Rake::TestTask.new do |test|
@@ -54,4 +54,12 @@ require 'rubocop/rake_task'
 RuboCop::RakeTask.new do |task|
   task.fail_on_error = true
   task.requires << 'rubocop-rspec'
+end
+
+task :copyright do
+  sh "grep -q -r '#{Date.today.strftime('%Y')}' \
+    --include '*.rb' \
+    --include '*.txt' \
+    --include 'Rakefile' \
+    ."
 end
