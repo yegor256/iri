@@ -4,8 +4,7 @@
 [![DevOps By Rultor.com](http://www.rultor.com/b/yegor256/iri)](http://www.rultor.com/p/yegor256/iri)
 [![We recommend RubyMine](https://www.elegantobjects.org/rubymine.svg)](https://www.jetbrains.com/ruby/)
 
-[![Build Status](https://travis-ci.org/yegor256/iri.svg)](https://travis-ci.org/yegor256/iri)
-[![Build status](https://ci.appveyor.com/api/projects/status/5hj65olpn2tds4al?svg=true)](https://ci.appveyor.com/project/yegor256/iri)
+[![rake](https://github.com/yegor256/iri/actions/workflows/rake.yml/badge.svg)](https://github.com/yegor256/iri/actions/workflows/rake.yml)
 [![Gem Version](https://badge.fury.io/rb/iri.svg)](http://badge.fury.io/rb/iri)
 [![Maintainability](https://api.codeclimate.com/v1/badges/7018d2fe438103828685/maintainability)](https://codeclimate.com/github/yegor256/iri/maintainability)
 [![Yard Docs](http://img.shields.io/badge/yard-docs-blue.svg)](http://rubydoc.info/github/yegor256/iri/master/frames)
