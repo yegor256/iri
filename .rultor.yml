@@ -1,11 +1,13 @@
+docker:
+  image: yegor256/rultor-image:1.9.0
 assets:
   rubygems.yml: yegor256/home#assets/rubygems.yml
 install: |-
-  export GEM_HOME=~/.ruby
-  export GEM_PATH=$GEM_HOME:$GEM_PATH
-  bundle install
+  pdd -f /dev/null
+  sudo bundle install --no-color "--gemfile=$(pwd)/Gemfile"
 release:
   script: |-
+    [[ "${tag}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || exit -1
     bundle exec rake
     rm -rf *.gem
     sed -i "s/0\.0\.0/${tag}/g" iri.gemspec
