@@ -21,5 +21,5 @@
 # SOFTWARE.
 
 source 'https://rubygems.org'
-ruby '~>2.2'
+ruby '~>3.0'
 gemspec
