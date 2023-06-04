@@ -23,7 +23,7 @@
 source 'https://rubygems.org'
 gemspec
 
-gem 'minitest', '5.16.1', require: false
+gem 'minitest', '5.18.0', require: false
 gem 'rake', '13.0.6', require: false
 gem 'rdoc', '6.4.0', require: false
 gem 'rubocop', '1.31.1', require: false
