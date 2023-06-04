@@ -8,7 +8,6 @@
 [![Gem Version](https://badge.fury.io/rb/iri.svg)](http://badge.fury.io/rb/iri)
 [![Maintainability](https://api.codeclimate.com/v1/badges/7018d2fe438103828685/maintainability)](https://codeclimate.com/github/yegor256/iri/maintainability)
 [![Yard Docs](http://img.shields.io/badge/yard-docs-blue.svg)](http://rubydoc.info/github/yegor256/iri/master/frames)
-
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/yegor256/iri/blob/master/LICENSE.txt)
 [![Test Coverage](https://img.shields.io/codecov/c/github/yegor256/iri.svg)](https://codecov.io/github/yegor256/iri?branch=master)
 ![Lines of code](https://img.shields.io/tokei/lines/github/yegor256/iri)

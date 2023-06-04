@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright (c) 2019-2022 Yegor Bugayenko
+# Copyright (c) 2019-2023 Yegor Bugayenko
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the 'Software'), to deal
@@ -21,5 +21,11 @@
 # SOFTWARE.
 
 source 'https://rubygems.org'
-ruby '~>2'
 gemspec
+
+gem 'minitest', '5.16.1', require: false
+gem 'rake', '13.0.6', require: false
+gem 'rdoc', '6.4.0', require: false
+gem 'rubocop', '1.31.1', require: false
+gem 'rubocop-rspec', '2.11.1', require: false
+gem 'simplecov', '0.22.0', require: false
