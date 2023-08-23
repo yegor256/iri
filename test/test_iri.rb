@@ -60,6 +60,13 @@ class IriTest < Minitest::Test
     )
   end
 
+  def test_inspects_iri
+    assert_equal(
+      '"https://openai.com"',
+      Iri.new('https://openai.com').inspect
+    )
+  end
+
   def test_replaces_scheme
     assert_equal(
       'https://google.com/',

@@ -5,8 +5,7 @@ AllCops:
   NewCops: enable
 
 Metrics/ClassLength:
-  Exclude:
-    - 'test/*.rb'
+  Max: 200
 Layout/EmptyLineAfterGuardClause:
   Enabled: false
 Layout/MultilineMethodCallIndentation:

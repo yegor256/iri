@@ -65,6 +65,11 @@ class Iri
     @uri.to_s
   end
 
+  # Inspect it, like a string can be inspected.
+  def inspect
+    @uri.to_s.inspect
+  end
+
   # Convert it to an object of class +URI+.
   def to_uri
     the_uri.clone
