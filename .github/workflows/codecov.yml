@@ -6,7 +6,7 @@ on:
       - master
 jobs:
   codecov:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
       - uses: ruby/setup-ruby@v1
@@ -16,5 +16,6 @@ jobs:
       - run: bundle exec rake
       - uses: codecov/codecov-action@v4.0.0-beta.3
         with:
+          token: ${{ secrets.CODECOV_TOKEN }}
           file: coverage/.resultset.json
           fail_ci_if_error: true
