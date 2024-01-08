@@ -3,10 +3,10 @@ docker:
 assets:
   rubygems.yml: yegor256/home#assets/rubygems.yml
 install: |-
-  sudo chown -R "$(whoami)" /usr/local/rvm
   pdd -f /dev/null
-  bundle install --no-color "--gemfile=$(pwd)/Gemfile"
+  bundle install --no-color
 release:
+  pre: false
   script: |-
     [[ "${tag}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || exit -1
     bundle exec rake
