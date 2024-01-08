@@ -43,6 +43,13 @@ class IriTest < Minitest::Test
     assert_equal('https://localhost:443/?q=books+about+tennis&limit=10', url)
   end
 
+  def test_converts_to_uri
+    assert_equal(
+      'https://alpha.local?t=1',
+      Iri.new('https://alpha.local').over(t: 1).to_uri.to_s
+    )
+  end
+
   def test_broken_uri
     assert_raises Iri::InvalidURI do
       Iri.new('https://example.com/>', safe: false).add(a: 1)
