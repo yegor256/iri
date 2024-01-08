@@ -49,6 +49,18 @@ class IriTest < Minitest::Test
     end
   end
 
+  def test_incorrect_call_of_add
+    assert_raises Iri::InvalidArguments do
+      Iri.new('https://example.com/').add('hello5')
+    end
+  end
+
+  def test_incorrect_call_of_over
+    assert_raises Iri::InvalidArguments do
+      Iri.new('https://example5.com/').over('boom44')
+    end
+  end
+
   def test_broken_uri_in_safe_mode
     Iri.new('https://example.com/>>>').add(a: 1)
   end

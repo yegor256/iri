@@ -48,6 +48,9 @@ class Iri
   # When URI is not valid.
   class InvalidURI < StandardError; end
 
+  # When .add(), .over(), or .del() arguments are not valid.
+  class InvalidArguments < StandardError; end
+
   # Makes a new object.
   #
   # You can even ignore the argument, which will produce an empty URI.
@@ -88,6 +91,7 @@ class Iri
   #  Iri.new('https://google.com').del(:q).add(q: 'test')
   #
   def add(hash)
+    raise InvalidArguments unless hash.is_a?(Hash)
     modify_query do |params|
       hash.each do |k, v|
         params[k.to_s] = [] unless params[k.to_s]
@@ -115,6 +119,7 @@ class Iri
   #  Iri.new('https://google.com?q=test').over(q: 'hey you!')
   #
   def over(hash)
+    raise InvalidArguments unless hash.is_a?(Hash)
     modify_query do |params|
       hash.each do |k, v|
         params[k.to_s] = [] unless params[k]

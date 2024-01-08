@@ -23,7 +23,7 @@ url = Iri.new('http://google.com/')
   .append('find').append('me') # -> http://google.com/find/me
   .add(q: 'books about OOP', limit: 50) # -> ?q=books+about+OOP&limit=50
   .del(:q) # remove this query parameter
-  .del('limit') # remove this one too
+  .del('limit', 'speed') # also remove these two
   .over(q: 'books about tennis', limit: 10) # replace these params
   .scheme('https') # replace 'http' with 'https'
   .host('localhost') # replace the host name
