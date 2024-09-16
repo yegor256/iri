@@ -1,5 +1,5 @@
 docker:
-  image: yegor256/rultor-image:1.22.0
+  image: yegor256/rultor-ruby
 assets:
   rubygems.yml: yegor256/home#assets/rubygems.yml
 install: |-
