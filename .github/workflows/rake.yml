@@ -12,7 +12,7 @@ jobs:
     name: test
     strategy:
       matrix:
-        os: [ubuntu-20.04, macos-15, windows-2022]
+        os: [ubuntu-24.04, macos-15, windows-2022]
         ruby: [2.7, 3.1]
     runs-on: ${{ matrix.os }}
     steps:
