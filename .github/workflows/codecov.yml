@@ -14,8 +14,8 @@ jobs:
           ruby-version: 2.7
       - run: bundle update
       - run: bundle exec rake
-      - uses: codecov/codecov-action@v4.0.0-beta.3
+      - uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          file: coverage/.resultset.json
+          files: coverage/.resultset.json
           fail_ci_if_error: true
