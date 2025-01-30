@@ -78,6 +78,18 @@ class Iri
     the_uri.clone
   end
 
+  # Removes the host, the port, and the scheme and returns
+  # only the local address, for example, converting "https://google.com/foo"
+  # into "/foo".
+  def to_local
+    u = the_uri
+    [
+      u.path,
+      u.query ? "?#{u.query}" : '',
+      u.fragment ? "##{u.fragment}" : ''
+    ].join
+  end
+
   # Add a few query arguments.
   #
   # For example:

@@ -50,6 +50,17 @@ class IriTest < Minitest::Test
     )
   end
 
+  def test_converts_to_local
+    {
+      'http://localhost:9292/' => '/',
+      'https://google.com/' => '/',
+      'https://google.com/foo' => '/foo',
+      'https://google.com/bar?x=900' => '/bar?x=900',
+      'https://google.com/what#yes' => '/what#yes',
+      'https://google.com/what?a=8&b=9#yes' => '/what?a=8&b=9#yes'
+    }.each { |a, b| assert_equal(b, Iri.new(a).to_local) }
+  end
+
   def test_broken_uri
     assert_raises Iri::InvalidURI do
       Iri.new('https://example.com/>', safe: false).add(a: 1)
