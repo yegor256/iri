@@ -58,22 +58,31 @@ class Iri
   # By default, this class will never throw any exceptions, even if your URI
   # is not valid. It will just assume that the URI is"/". However,
   # you can turn this mode off, by specifying safe as FALSE.
+  #
+  # @param [String] uri URI
+  # @param [Boolean] safe SHould it safe?
   def initialize(uri = '', safe: true)
     @uri = uri
     @safe = safe
   end
 
   # Convert it to a string.
+  #
+  # @return [String] New URI
   def to_s
     @uri.to_s
   end
 
   # Inspect it, like a string can be inspected.
+  #
+  # @return [String] Details of it
   def inspect
     @uri.to_s.inspect
   end
 
   # Convert it to an object of class +URI+.
+  #
+  # @return [String] New URI
   def to_uri
     the_uri.clone
   end
@@ -81,6 +90,8 @@ class Iri
   # Removes the host, the port, and the scheme and returns
   # only the local address, for example, converting "https://google.com/foo"
   # into "/foo".
+  #
+  # @return [String] Local part of the URI
   def to_local
     u = the_uri
     [
@@ -102,6 +113,8 @@ class Iri
   #
   #  Iri.new('https://google.com').del(:q).add(q: 'test')
   #
+  # @param [Hash] hash Hash of names/values to set into the query part
+  # @return [Iri] A new iri
   def add(hash)
     raise InvalidArguments unless hash.is_a?(Hash)
     modify_query do |params|
@@ -118,6 +131,8 @@ class Iri
   #
   #  Iri.new('https://google.com?q=test').del(:q)
   #
+  # @param [Array] keys List of keys to delete
+  # @return [Iri] A new iri
   def del(*keys)
     modify_query do |params|
       keys.each do |k|
@@ -130,6 +145,8 @@ class Iri
   #
   #  Iri.new('https://google.com?q=test').over(q: 'hey you!')
   #
+  # @param [Hash] hash Hash of names/values to set into the query part
+  # @return [Iri] A new iri
   def over(hash)
     raise InvalidArguments unless hash.is_a?(Hash)
     modify_query do |params|
@@ -141,6 +158,9 @@ class Iri
   end
 
   # Replace the scheme.
+  #
+  # @param [String] val New scheme to set, like "https" or "http"
+  # @return [Iri] A new iri
   def scheme(val)
     modify do |c|
       c.scheme = val
@@ -148,6 +168,9 @@ class Iri
   end
 
   # Replace the host.
+  #
+  # @param [String] val New host to set, like "google.com" or "192.168.0.1"
+  # @return [Iri] A new iri
   def host(val)
     modify do |c|
       c.host = val
@@ -155,6 +178,9 @@ class Iri
   end
 
   # Replace the port.
+  #
+  # @param [String] val New TCP port to set, like "8080" or "443"
+  # @return [Iri] A new iri
   def port(val)
     modify do |c|
       c.port = val
@@ -162,6 +188,9 @@ class Iri
   end
 
   # Replace the path part of the URI.
+  #
+  # @param [String] val New path to set, like "/foo/bar"
+  # @return [Iri] A new iri
   def path(val)
     modify do |c|
       c.path = val
@@ -169,6 +198,9 @@ class Iri
   end
 
   # Replace the fragment part of the URI.
+  #
+  # @param [String] val New fragment to set, like "hello"
+  # @return [Iri] A new iri
   def fragment(val)
     modify do |c|
       c.fragment = val.to_s
@@ -176,6 +208,9 @@ class Iri
   end
 
   # Replace the query part of the URI.
+  #
+  # @param [String] val New query to set, like "a=1&b=2"
+  # @return [Iri] A new iri
   def query(val)
     modify do |c|
       c.query = val
@@ -189,6 +224,9 @@ class Iri
   #  Iri.new('https://google.com/a/b?q=test').cut('/hello')
   #
   # The result will contain "https://google.com/hello".
+  #
+  # @param [String] path New path to set, like "/foo"
+  # @return [Iri] A new iri
   def cut(path = '/')
     modify do |c|
       c.query = nil
@@ -204,6 +242,9 @@ class Iri
   #  Iri.new('https://google.com/a/b?q=test').append('/hello')
   #
   # The result will contain "https://google.com/a/b/hello?q=test".
+  #
+  # @param [String] part New segment to add to existing path
+  # @return [Iri] A new iri
   def append(part)
     modify do |c|
       tail = (c.path.end_with?('/') ? '' : '/') + CGI.escape(part.to_s)
