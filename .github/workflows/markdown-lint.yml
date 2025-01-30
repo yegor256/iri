@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 ---
-name: rake
+name: markdown-lint
 'on':
   push:
     branches:
@@ -28,20 +28,13 @@ name: rake
   pull_request:
     branches:
       - master
+    paths-ignore: ['paper/**', 'sandbox/**']
+concurrency:
+  group: markdown-lint-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
-  test:
-    name: test
-    strategy:
-      matrix:
-        os: [ubuntu-24.04, macos-15, windows-2022]
-        ruby: [3.3]
-    runs-on: ${{ matrix.os }}
+  markdown-lint:
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: ${{ matrix.ruby }}
-          bundler-cache: true
-      - run: bundle config set --global path "$(pwd)/vendor/bundle"
-      - run: bundle install
-      - run: bundle exec rake
+      - uses: articulate/actions-markdownlint@v1

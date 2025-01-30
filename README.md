@@ -1,4 +1,4 @@
-<img src="/logo.svg" width="64px" height="64px"/>
+# Immutable URI Builder for Ruby
 
 [![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
 [![DevOps By Rultor.com](http://www.rultor.com/b/yegor256/iri)](http://www.rultor.com/p/yegor256/iri)
@@ -14,7 +14,7 @@
 
 The class [`Iri`](https://www.rubydoc.info/github/yegor256/iri/master/Iri)
 helps you build a URI and then modify its
-parts via a simple [fluent interface](https://en.wikipedia.org/wiki/Fluent_interface):
+parts via a simple [fluent interface]:
 
 ```ruby
 require 'iri'
@@ -34,17 +34,18 @@ url = Iri.new('http://google.com/')
   .to_s # convert it to a string
 ```
 
-The full list of methods is [here](https://www.rubydoc.info/github/yegor256/iri/master/Iri).
+The full list of methods is
+[here](https://www.rubydoc.info/github/yegor256/iri/master/Iri).
 
 Install it:
 
 ```bash
-$ gem install iri
+gem install iri
 ```
 
 Or add this to your `Gemfile`:
 
-```bash
+```ruby
 gem 'iri'
 ```
 
@@ -64,18 +65,23 @@ Of course, it's better to create the `iri` object only once per request
 and re-use it where you need. It's _immutable_, so you won't have any
 side-effects.
 
-PS. See how I use it in this Sinatra web app: [yegor256/0rsk](https://github.com/yegor256/0rsk).
+PS. See how I use it in this Sinatra web app:
+[yegor256/0rsk](https://github.com/yegor256/0rsk).
 
 ## How to contribute
 
-Read [these guidelines](https://www.yegor256.com/2014/04/15/github-guidelines.html).
+Read
+[these guidelines](https://www.yegor256.com/2014/04/15/github-guidelines.html).
 Make sure you build is green before you contribute
-your pull request. You will need to have [Ruby](https://www.ruby-lang.org/en/) 2.3+ and
+your pull request. You will need to have
+[Ruby](https://www.ruby-lang.org/en/) 2.3+ and
 [Bundler](https://bundler.io/) installed. Then:
 
-```
-$ bundle update
-$ bundle exec rake
+```bash
+bundle update
+bundle exec rake
 ```
 
 If it's clean and you don't see any error messages, submit your pull request.
+
+[fluent interface]: https://en.wikipedia.org/wiki/Fluent_interface
