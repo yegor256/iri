@@ -25,7 +25,12 @@ AllCops:
   TargetRubyVersion: 2.2
   SuggestExtensions: false
   NewCops: enable
+require:
+  - rubocop-minitest
+  - rubocop-performance
 
+Minitest/EmptyLineBeforeAssertionMethods:
+  Enabled: false
 Metrics/ClassLength:
   Max: 200
 Layout/EmptyLineAfterGuardClause:
