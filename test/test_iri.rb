@@ -58,7 +58,11 @@ class IriTest < Minitest::Test
       'https://google.com/bar?x=900' => '/bar?x=900',
       'https://google.com/what#yes' => '/what#yes',
       'https://google.com/what?a=8&b=9#yes' => '/what?a=8&b=9#yes'
-    }.each { |a, b| assert_equal(b, Iri.new(a).to_local) }
+    }.each { |a, b| assert_equal(b, Iri.new(a).to_local.to_s) }
+  end
+
+  def test_deals_with_local
+    assert_equal('/foo?x=1', Iri.new('https://google.com/foo').to_local.add(x: 1).to_s)
   end
 
   def test_broken_uri

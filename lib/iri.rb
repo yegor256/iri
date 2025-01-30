@@ -60,9 +60,11 @@ class Iri
   # you can turn this mode off, by specifying safe as FALSE.
   #
   # @param [String] uri URI
-  # @param [Boolean] safe SHould it safe?
-  def initialize(uri = '', safe: true)
+  # @param [Boolean] local Is it local (no host, port, and scheme)?
+  # @param [Boolean] safe Should it safe?
+  def initialize(uri = '', local: false, safe: true)
     @uri = uri
+    @local = local
     @safe = safe
   end
 
@@ -70,7 +72,16 @@ class Iri
   #
   # @return [String] New URI
   def to_s
-    @uri.to_s
+    u = the_uri
+    if @local
+      [
+        u.path,
+        u.query ? "?#{u.query}" : '',
+        u.fragment ? "##{u.fragment}" : ''
+      ].join
+    else
+      u.to_s
+    end
   end
 
   # Inspect it, like a string can be inspected.
@@ -91,14 +102,9 @@ class Iri
   # only the local address, for example, converting "https://google.com/foo"
   # into "/foo".
   #
-  # @return [String] Local part of the URI
+  # @return [Iri] Iri with no host/port/scheme
   def to_local
-    u = the_uri
-    [
-      u.path,
-      u.query ? "?#{u.query}" : '',
-      u.fragment ? "##{u.fragment}" : ''
-    ].join
+    Iri.new(@uri, local: true, safe: @safe)
   end
 
   # Add a few query arguments.
@@ -264,7 +270,7 @@ class Iri
   def modify
     c = the_uri.clone
     yield c
-    Iri.new(c)
+    Iri.new(c, local: @local, safe: @safe)
   end
 
   def modify_query
