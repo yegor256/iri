@@ -30,7 +30,6 @@ name: rake
       - master
 jobs:
   test:
-    name: test
     strategy:
       matrix:
         os: [ubuntu-24.04, macos-15, windows-2022]
