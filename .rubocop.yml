@@ -28,6 +28,7 @@ AllCops:
 require:
   - rubocop-minitest
   - rubocop-performance
+  - rubocop-rake
 Minitest/EmptyLineBeforeAssertionMethods:
   Enabled: false
 Metrics/ClassLength:
@@ -46,5 +47,3 @@ Metrics/PerceivedComplexity:
   Max: 12
 Layout/EndOfLine:
   EnforcedStyle: lf
-required:
-  - rubocop-rake
