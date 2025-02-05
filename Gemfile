@@ -29,5 +29,6 @@ gem 'rdoc', '6.11.0', require: false
 gem 'rubocop', '1.71.0', require: false
 gem 'rubocop-minitest', '0.36.0', require: false
 gem 'rubocop-performance', '1.23.1', require: false
+gem 'rubocop-rake', '>0', require: false
 gem 'rubocop-rspec', '3.4.0', require: false
 gem 'simplecov', '0.22.0', require: false
