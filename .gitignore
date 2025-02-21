@@ -4,3 +4,4 @@
 rdoc/
 .idea/
 coverage/
+vendor/
