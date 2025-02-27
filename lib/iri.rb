@@ -11,9 +11,9 @@ require 'cgi'
 #  require 'iri'
 #  url = Iri.new('http://google.com/')
 #    .add(q: 'books about OOP', limit: 50)
-#    .del(:q) // remove this query parameter
-#    .del('limit') // remove this one too
-#    .over(q: 'books about tennis', limit: 10) // replace these params
+#    .del(:q) # remove this query parameter
+#    .del('limit') # remove this one too
+#    .over(q: 'books about tennis', limit: 10) # replace these params
 #    .scheme('https')
 #    .host('localhost')
 #    .port('443')
@@ -37,7 +37,7 @@ class Iri
   # You can even ignore the argument, which will produce an empty URI.
   #
   # By default, this class will never throw any exceptions, even if your URI
-  # is not valid. It will just assume that the URI is"/". However,
+  # is not valid. It will just assume that the URI is "/". However,
   # you can turn this mode off, by specifying safe as FALSE.
   #
   # @param [String] uri URI
