@@ -1,7 +1,7 @@
 *.gem
-.bundle/
 .DS_Store
-rdoc/
+.bundle/
 .idea/
 coverage/
+rdoc/
 vendor/
