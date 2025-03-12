@@ -6,7 +6,7 @@
 source 'https://rubygems.org'
 gemspec
 
-gem 'minitest', '5.25.4', require: false
+gem 'minitest', '5.25.5', require: false
 gem 'rake', '13.2.1', require: false
 gem 'rdoc', '6.12.0', require: false
 gem 'rubocop', '1.73.0', require: false
