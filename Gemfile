@@ -8,7 +8,7 @@ gemspec
 
 gem 'minitest', '5.25.5', require: false
 gem 'rake', '13.2.1', require: false
-gem 'rdoc', '6.12.0', require: false
+gem 'rdoc', '6.13.0', require: false
 gem 'rubocop', '1.74.0', require: false
 gem 'rubocop-minitest', '>0', require: false
 gem 'rubocop-performance', '>0', require: false
