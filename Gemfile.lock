@@ -70,8 +70,10 @@ GEM
     unicode-emoji (4.0.4)
 
 PLATFORMS
+  arm64-darwin-23
   arm64-darwin-24
   ruby
+  x64-mingw-ucrt
 
 DEPENDENCIES
   iri!

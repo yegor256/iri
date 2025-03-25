@@ -28,3 +28,4 @@ Metrics/PerceivedComplexity:
   Max: 12
 Layout/EndOfLine:
   EnforcedStyle: lf
+require: []
