@@ -26,6 +26,7 @@ GEM
     rdoc (6.13.0)
       psych (>= 4.0.0)
     regexp_parser (2.10.0)
+    rexml (3.4.1)
     rubocop (1.74.0)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
@@ -58,6 +59,9 @@ GEM
       docile (~> 1.1)
       simplecov-html (~> 0.11)
       simplecov_json_formatter (~> 0.1)
+    simplecov-cobertura (2.1.0)
+      rexml
+      simplecov (~> 0.19)
     simplecov-html (0.13.1)
     simplecov_json_formatter (0.1.4)
     stringio (3.1.5)
@@ -80,6 +84,7 @@ DEPENDENCIES
   rubocop-rake (> 0)
   rubocop-rspec (> 0)
   simplecov (~> 0.22)
+  simplecov-cobertura (= 2.1.0)
 
 BUNDLED WITH
    2.5.16
