@@ -66,23 +66,20 @@ GEM
     unicode-emoji (4.0.4)
 
 PLATFORMS
-  arm64-darwin-22
-  arm64-darwin-23
   arm64-darwin-24
-  x64-mingw-ucrt
-  x86_64-linux
+  ruby
 
 DEPENDENCIES
   iri!
-  minitest (= 5.25.5)
-  rake (= 13.2.1)
-  rdoc (= 6.13.0)
+  minitest (~> 5.25)
+  rake (~> 13.2)
+  rdoc (~> 6.12)
   rubocop (= 1.74.0)
   rubocop-minitest (> 0)
   rubocop-performance (> 0)
   rubocop-rake (> 0)
   rubocop-rspec (> 0)
-  simplecov (= 0.22.0)
+  simplecov (~> 0.22)
 
 BUNDLED WITH
    2.5.16

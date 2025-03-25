@@ -4,6 +4,7 @@
 # SPDX-License-Identifier: MIT
 
 require 'minitest/autorun'
+require_relative '../test/test__helper'
 require_relative '../lib/iri'
 
 # Iri test.
