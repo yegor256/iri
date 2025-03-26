@@ -40,9 +40,9 @@ class Iri
   # is not valid. It will just assume that the URI is "/". However,
   # you can turn this mode off, by specifying safe as FALSE.
   #
-  # @param [String] uri URI
+  # @param [String] uri URI string to parse
   # @param [Boolean] local Is it local (no host, port, and scheme)?
-  # @param [Boolean] safe Should it safe?
+  # @param [Boolean] safe Should it be safe mode (prevents exceptions)?
   def initialize(uri = '', local: false, safe: true)
     @uri = uri
     @local = local
@@ -74,7 +74,7 @@ class Iri
 
   # Convert it to an object of class +URI+.
   #
-  # @return [String] New URI
+  # @return [URI] New URI object
   def to_uri
     the_uri.clone
   end
@@ -118,7 +118,7 @@ class Iri
   #
   #  Iri.new('https://google.com?q=test').del(:q)
   #
-  # @param [Array] keys List of keys to delete
+  # @param [Array<Symbol, String>] keys List of keys to delete
   # @return [Iri] A new iri
   def del(*keys)
     modify_query do |params|
@@ -138,7 +138,7 @@ class Iri
     raise InvalidArguments unless hash.is_a?(Hash)
     modify_query do |params|
       hash.each do |k, v|
-        params[k.to_s] = [] unless params[k]
+        params[k.to_s] = [] unless params[k.to_s]
         params[k.to_s] = [v]
       end
     end
