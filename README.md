@@ -1,13 +1,13 @@
 # Immutable URI Builder for Ruby
 
 [![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
-[![DevOps By Rultor.com](http://www.rultor.com/b/yegor256/iri)](http://www.rultor.com/p/yegor256/iri)
+[![DevOps By Rultor.com](https://www.rultor.com/b/yegor256/iri)](https://www.rultor.com/p/yegor256/iri)
 [![We recommend RubyMine](https://www.elegantobjects.org/rubymine.svg)](https://www.jetbrains.com/ruby/)
 
 [![rake](https://github.com/yegor256/iri/actions/workflows/rake.yml/badge.svg)](https://github.com/yegor256/iri/actions/workflows/rake.yml)
-[![Gem Version](https://badge.fury.io/rb/iri.svg)](http://badge.fury.io/rb/iri)
+[![Gem Version](https://badge.fury.io/rb/iri.svg)](https://badge.fury.io/rb/iri)
 [![Maintainability](https://api.codeclimate.com/v1/badges/7018d2fe438103828685/maintainability)](https://codeclimate.com/github/yegor256/iri/maintainability)
-[![Yard Docs](http://img.shields.io/badge/yard-docs-blue.svg)](http://rubydoc.info/github/yegor256/iri/master/frames)
+[![Yard Docs](https://img.shields.io/badge/yard-docs-blue.svg)](https://rubydoc.info/github/yegor256/iri/master/frames)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/yegor256/iri/blob/master/LICENSE.txt)
 [![Test Coverage](https://img.shields.io/codecov/c/github/yegor256/iri.svg)](https://codecov.io/github/yegor256/iri?branch=master)
 [![Hits-of-Code](https://hitsofcode.com/github/yegor256/iri)](https://hitsofcode.com/view/github/yegor256/iri)
