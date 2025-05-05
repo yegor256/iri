@@ -9,7 +9,7 @@ GEM
     ast (2.4.3)
     date (3.4.1)
     docile (1.4.1)
-    json (2.10.2)
+    json (2.11.3)
     language_server-protocol (3.17.0.4)
     lint_roller (1.1.0)
     minitest (5.25.5)
@@ -18,7 +18,7 @@ GEM
       ast (~> 2.4.1)
       racc
     prism (1.4.0)
-    psych (5.2.3)
+    psych (5.2.4)
       date
       stringio
     racc (1.8.1)
@@ -66,7 +66,7 @@ GEM
       simplecov (~> 0.19)
     simplecov-html (0.13.1)
     simplecov_json_formatter (0.1.4)
-    stringio (3.1.6)
+    stringio (3.1.7)
     unicode-display_width (3.1.4)
       unicode-emoji (~> 4.0, >= 4.0.4)
     unicode-emoji (4.0.4)
