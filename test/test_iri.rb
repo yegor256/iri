@@ -3,7 +3,6 @@
 # SPDX-FileCopyrightText: Copyright (c) 2019-2025 Yegor Bugayenko
 # SPDX-License-Identifier: MIT
 
-require 'minitest/autorun'
 require_relative '../test/test__helper'
 require_relative '../lib/iri'
 
@@ -184,5 +183,71 @@ class IriTest < Minitest::Test
       'http://google/?a=hey&b=2&c=3',
       Iri.new('http://google/?a=1&b=2&c=3&a=33').over(a: 'hey').to_s
     )
+  end
+
+  def test_rejects_nil_uri
+    assert_raises ArgumentError do
+      Iri.new(nil)
+    end
+  end
+
+  def test_rejects_nil_scheme
+    assert_raises ArgumentError do
+      Iri.new('http://google.com').scheme(nil)
+    end
+  end
+
+  def test_rejects_nil_host
+    assert_raises ArgumentError do
+      Iri.new('http://google.com').host(nil)
+    end
+  end
+
+  def test_rejects_nil_port
+    assert_raises ArgumentError do
+      Iri.new('http://google.com').port(nil)
+    end
+  end
+
+  def test_rejects_nil_path
+    assert_raises ArgumentError do
+      Iri.new('http://google.com').path(nil)
+    end
+  end
+
+  def test_rejects_nil_fragment
+    assert_raises ArgumentError do
+      Iri.new('http://google.com').fragment(nil)
+    end
+  end
+
+  def test_rejects_nil_query
+    assert_raises ArgumentError do
+      Iri.new('http://google.com').query(nil)
+    end
+  end
+
+  def test_rejects_nil_cut_path
+    assert_raises ArgumentError do
+      Iri.new('http://google.com/foo').cut(nil)
+    end
+  end
+
+  def test_rejects_nil_append_part
+    assert_raises ArgumentError do
+      Iri.new('http://google.com').append(nil)
+    end
+  end
+
+  def test_rejects_nil_add_hash
+    assert_raises ArgumentError do
+      Iri.new('http://google.com').add(nil)
+    end
+  end
+
+  def test_rejects_nil_over_hash
+    assert_raises ArgumentError do
+      Iri.new('http://google.com').over(nil)
+    end
   end
 end

@@ -13,7 +13,7 @@ plugins:
 Minitest/EmptyLineBeforeAssertionMethods:
   Enabled: false
 Metrics/ClassLength:
-  Max: 200
+  Max: 250
 Layout/EmptyLineAfterGuardClause:
   Enabled: false
 Layout/MultilineMethodCallIndentation:
@@ -28,4 +28,3 @@ Metrics/PerceivedComplexity:
   Max: 12
 Layout/EndOfLine:
   EnforcedStyle: lf
-require: []

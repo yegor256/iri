@@ -61,6 +61,7 @@ class Iri
   # @param [Boolean] safe When true, prevents InvalidURI exceptions
   # @raise [InvalidURI] If the URI is malformed and safe is false
   def initialize(uri = '', local: false, safe: true)
+    raise ArgumentError, "The uri can't be nil" if uri.nil?
     @uri = uri
     @local = local
     @safe = safe
@@ -138,6 +139,7 @@ class Iri
   # @see #del
   # @see #over
   def add(hash)
+    raise ArgumentError, "The hash can't be nil" if hash.nil?
     raise InvalidArguments unless hash.is_a?(Hash)
     modify_query do |params|
       hash.each do |k, v|
@@ -191,6 +193,7 @@ class Iri
   # @see #add
   # @see #del
   def over(hash)
+    raise ArgumentError, "The hash can't be nil" if hash.nil?
     raise InvalidArguments unless hash.is_a?(Hash)
     modify_query do |params|
       hash.each do |k, v|
@@ -211,6 +214,7 @@ class Iri
   # @see #host
   # @see #port
   def scheme(val)
+    raise ArgumentError, "The scheme can't be nil" if val.nil?
     modify do |c|
       c.scheme = val
     end
@@ -227,6 +231,7 @@ class Iri
   # @see #scheme
   # @see #port
   def host(val)
+    raise ArgumentError, "The host can't be nil" if val.nil?
     modify do |c|
       c.host = val
     end
@@ -243,6 +248,7 @@ class Iri
   # @see #scheme
   # @see #host
   def port(val)
+    raise ArgumentError, "The port can't be nil" if val.nil?
     modify do |c|
       c.port = val
     end
@@ -259,6 +265,7 @@ class Iri
   # @see #query
   # @see #fragment
   def path(val)
+    raise ArgumentError, "The path can't be nil" if val.nil?
     modify do |c|
       c.path = val
     end
@@ -275,6 +282,7 @@ class Iri
   # @see #path
   # @see #query
   def fragment(val)
+    raise ArgumentError, "The fragment can't be nil" if val.nil?
     modify do |c|
       c.fragment = val.to_s
     end
@@ -295,6 +303,7 @@ class Iri
   # @see #del
   # @see #over
   def query(val)
+    raise ArgumentError, "The query can't be nil" if val.nil?
     modify do |c|
       c.query = val
     end
@@ -319,6 +328,7 @@ class Iri
   # @see #query
   # @see #fragment
   def cut(path = '/')
+    raise ArgumentError, "The path can't be nil" if path.nil?
     modify do |c|
       c.query = nil
       c.path = path
@@ -347,6 +357,7 @@ class Iri
   # @return [Iri] A new Iri instance
   # @see #path
   def append(part)
+    raise ArgumentError, "The part can't be nil" if part.nil?
     modify do |c|
       tail = (c.path.end_with?('/') ? '' : '/') + CGI.escape(part.to_s)
       c.path = c.path + tail

@@ -34,8 +34,8 @@ url = Iri.new('http://google.com/')
   .to_s # convert it to a string
 ```
 
-The full list of methods is
-[here](https://www.rubydoc.info/github/yegor256/iri/master/Iri).
+See the
+[full list of methods](https://www.rubydoc.info/github/yegor256/iri/master/Iri).
 
 Install it:
 
