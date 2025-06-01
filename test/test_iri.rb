@@ -250,4 +250,11 @@ class IriTest < Minitest::Test
       Iri.new('http://google.com').over(nil)
     end
   end
+
+  def test_with_alias_for_add
+    assert_equal(
+      'http://google.com?q=test&limit=10',
+      Iri.new('http://google.com').with(q: 'test', limit: 10).to_s
+    )
+  end
 end

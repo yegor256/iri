@@ -8,3 +8,4 @@ doc/
 node_modules/
 rdoc/
 vendor/
+.claude/

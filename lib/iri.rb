@@ -148,6 +148,7 @@ class Iri
       end
     end
   end
+  alias with add
 
   # Deletes query parameters from the URI.
   #
