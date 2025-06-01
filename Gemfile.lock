@@ -6,26 +6,29 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
+    ansi (1.5.0)
     ast (2.4.3)
-    date (3.4.1)
+    backtrace (0.4.0)
+    builder (3.3.0)
+    concurrent-ruby (1.3.5)
     docile (1.4.1)
     json (2.12.2)
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
     minitest (5.25.5)
+    minitest-reporters (1.7.1)
+      ansi
+      builder
+      minitest (>= 5.0)
+      ruby-progressbar
     parallel (1.27.0)
     parser (3.3.8.0)
       ast (~> 2.4.1)
       racc
     prism (1.4.0)
-    psych (5.2.6)
-      date
-      stringio
     racc (1.8.1)
     rainbow (3.1.1)
     rake (13.3.0)
-    rdoc (6.13.1)
-      psych (>= 4.0.0)
     regexp_parser (2.10.0)
     rexml (3.4.1)
     rubocop (1.75.8)
@@ -66,10 +69,13 @@ GEM
       simplecov (~> 0.19)
     simplecov-html (0.13.1)
     simplecov_json_formatter (0.1.4)
-    stringio (3.1.7)
+    threads (0.4.1)
+      backtrace (~> 0)
+      concurrent-ruby (~> 1.0)
     unicode-display_width (3.1.4)
       unicode-emoji (~> 4.0, >= 4.0.4)
     unicode-emoji (4.0.4)
+    yard (0.9.37)
 
 PLATFORMS
   arm64-darwin-23
@@ -80,15 +86,17 @@ PLATFORMS
 DEPENDENCIES
   iri!
   minitest (~> 5.25)
+  minitest-reporters (~> 1.7)
   rake (~> 13.2)
-  rdoc (~> 6.12)
-  rubocop (~> 1.75)
+  rubocop (~> 1.74)
   rubocop-minitest (> 0)
   rubocop-performance (> 0)
   rubocop-rake (> 0)
   rubocop-rspec (> 0)
   simplecov (~> 0.22)
   simplecov-cobertura (~> 2.1)
+  threads (~> 0.4)
+  yard (~> 0.9)
 
 BUNDLED WITH
    2.5.16

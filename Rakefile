@@ -17,7 +17,7 @@ def version
   Gem::Specification.load(Dir['*.gemspec'].first).version
 end
 
-task default: %i[clean test rubocop]
+task default: %i[clean test rubocop yard]
 
 require 'rake/testtask'
 Rake::TestTask.new do |test|
@@ -26,15 +26,13 @@ Rake::TestTask.new do |test|
   test.verbose = false
 end
 
-require 'rdoc/task'
-RDoc::Task.new do |rdoc|
-  rdoc.main = 'README.md'
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.rdoc_files.include('README.md', 'lib/**/*.rb')
+require 'yard'
+desc 'Build Yard documentation'
+YARD::Rake::YardocTask.new do |t|
+  t.files = ['lib/**/*.rb']
 end
 
 require 'rubocop/rake_task'
 RuboCop::RakeTask.new do |task|
   task.fail_on_error = true
-  task.requires << 'rubocop-rspec'
 end
