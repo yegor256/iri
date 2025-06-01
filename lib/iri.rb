@@ -234,6 +234,8 @@ class Iri
   # @see #port
   def host(val)
     raise ArgumentError, "The host can't be nil" if val.nil?
+    raise ArgumentError, 'The host must be a String' unless val.is_a?(String)
+    raise ArgumentError, "The host can't be empty" if val.empty?
     modify do |c|
       c.host = val
     end
@@ -251,6 +253,10 @@ class Iri
   # @see #host
   def port(val)
     raise ArgumentError, "The port can't be nil" if val.nil?
+    raise ArgumentError, 'The port must be an Integer' unless val.is_a?(Integer)
+    raise ArgumentError, "The port can'be negative" if val.negative?
+    raise ArgumentError, "The port can'be zero" if val.zero?
+    raise ArgumentError, "The port can'be larger than 65536" if val > 65_536
     modify do |c|
       c.port = val
     end
@@ -268,6 +274,8 @@ class Iri
   # @see #fragment
   def path(val)
     raise ArgumentError, "The path can't be nil" if val.nil?
+    raise ArgumentError, 'The path must be a String' unless val.is_a?(String)
+    raise ArgumentError, "The path can't be empty" if val.empty?
     modify do |c|
       c.path = val
     end
@@ -285,6 +293,7 @@ class Iri
   # @see #query
   def fragment(val)
     raise ArgumentError, "The fragment can't be nil" if val.nil?
+    val = val.to_s
     modify do |c|
       c.fragment = val.to_s
     end
@@ -306,6 +315,7 @@ class Iri
   # @see #over
   def query(val)
     raise ArgumentError, "The query can't be nil" if val.nil?
+    raise ArgumentError, 'The query must be a String' unless val.is_a?(String)
     modify do |c|
       c.query = val
     end
@@ -331,6 +341,8 @@ class Iri
   # @see #fragment
   def cut(path = '/')
     raise ArgumentError, "The path can't be nil" if path.nil?
+    raise ArgumentError, 'The path must be a String' unless path.is_a?(String)
+    raise ArgumentError, "The path can't be empty" if path.empty?
     modify do |c|
       c.query = nil
       c.path = path
@@ -360,6 +372,8 @@ class Iri
   # @see #path
   def append(part)
     raise ArgumentError, "The part can't be nil" if part.nil?
+    raise ArgumentError, 'The part must be a String' unless part.is_a?(String)
+    raise ArgumentError, "The part can't be empty" if part.empty?
     modify do |c|
       tail = (c.path.end_with?('/') ? '' : '/') + CGI.escape(part.to_s)
       c.path = c.path + tail

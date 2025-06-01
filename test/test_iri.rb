@@ -19,7 +19,7 @@ class IriTest < Minitest::Test
       .over(q: 'books about tennis', limit: 10)
       .scheme('https')
       .host('localhost')
-      .port('443')
+      .port(443)
       .to_s
     assert_equal('https://localhost:443/?q=books+about+tennis&limit=10', url)
   end
@@ -156,7 +156,7 @@ class IriTest < Minitest::Test
   def test_appends_path
     assert_equal(
       'http://google/a/b/z+%2F+7/42?x=3',
-      Iri.new('http://google/a/b?x=3').append('z / 7').append(42).to_s
+      Iri.new('http://google/a/b?x=3').append('z / 7').append(42.to_s).to_s
     )
   end
 
@@ -168,10 +168,6 @@ class IriTest < Minitest::Test
   end
 
   def test_appends_empty_path
-    assert_equal(
-      'http://google.com/hello/',
-      Iri.new('http://google.com/hello').append('').append('').to_s
-    )
     assert_equal(
       'http://google.com/test',
       Iri.new('http://google.com/hello').cut.append('test').to_s
