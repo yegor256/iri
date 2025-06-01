@@ -217,6 +217,8 @@ class Iri
   # @see #port
   def scheme(val)
     raise ArgumentError, "The scheme can't be nil" if val.nil?
+    raise ArgumentError, 'The scheme must be a String' unless val.is_a?(String)
+    raise ArgumentError, "The scheme can't be empty" if val.empty?
     modify do |c|
       c.scheme = val
     end
