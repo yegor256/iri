@@ -20,9 +20,9 @@ parts via a simple [fluent interface]:
 require 'iri'
 url = Iri.new('http://google.com/')
   .append('find').append('me') # -> http://google.com/find/me
-  .add(q: 'books about OOP', limit: 50) # -> ?q=books+about+OOP&limit=50
-  .del(:q) # remove this query parameter
-  .del('limit', 'speed') # also remove these two
+  .with(q: 'books about OOP', limit: 50) # -> ?q=books+about+OOP&limit=50
+  .without(:q) # remove this query parameter
+  .without('limit', 'speed') # also remove these two
   .over(q: 'books about tennis', limit: 10) # replace these params
   .scheme('https') # replace 'http' with 'https'
   .host('localhost') # replace the host name

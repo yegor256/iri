@@ -257,4 +257,11 @@ class IriTest < Minitest::Test
       Iri.new('http://google.com').with(q: 'test', limit: 10).to_s
     )
   end
+
+  def test_without_alias_for_del
+    assert_equal(
+      'http://google.com/?b=2',
+      Iri.new('http://google.com/?a=1&b=2&c=3').without(:a, :c).to_s
+    )
+  end
 end

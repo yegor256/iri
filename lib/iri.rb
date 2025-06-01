@@ -173,6 +173,7 @@ class Iri
       end
     end
   end
+  alias without del
 
   # Replaces query parameters in the URI.
   #
