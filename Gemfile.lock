@@ -9,6 +9,7 @@ GEM
     ast (2.4.3)
     date (3.4.1)
     docile (1.4.1)
+    erb (5.0.1)
     json (2.12.2)
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
@@ -24,7 +25,8 @@ GEM
     racc (1.8.1)
     rainbow (3.1.1)
     rake (13.3.0)
-    rdoc (6.13.1)
+    rdoc (6.14.0)
+      erb
       psych (>= 4.0.0)
     regexp_parser (2.10.0)
     rexml (3.4.1)
