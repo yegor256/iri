@@ -31,6 +31,13 @@ class IriTest < Minitest::Test
     )
   end
 
+  def test_hides_https_port_number
+    assert_equal(
+      'https://google.com/abc',
+      Iri.new('https://google.com').port(443).append('abc').to_s
+    )
+  end
+
   def test_converts_to_local
     {
       'http://localhost:9292/' => '/',
