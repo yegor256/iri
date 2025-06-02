@@ -19,9 +19,9 @@ class IriTest < Minitest::Test
       .over(q: 'books about tennis', limit: 10)
       .scheme('https')
       .host('localhost')
-      .port(443)
+      .port(8080)
       .to_s
-    assert_equal('https://localhost:443/?q=books+about+tennis&limit=10', url)
+    assert_equal('https://localhost:8080/?q=books+about+tennis&limit=10', url)
   end
 
   def test_converts_to_uri

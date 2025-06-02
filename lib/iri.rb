@@ -62,7 +62,7 @@ class Iri
   # @raise [InvalidURI] If the URI is malformed and safe is false
   def initialize(uri = '', local: false, safe: true)
     raise ArgumentError, "The uri can't be nil" if uri.nil?
-    @uri = uri
+    @uri = uri.to_s
     @local = local
     @safe = safe
   end
