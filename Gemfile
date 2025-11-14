@@ -9,6 +9,7 @@ gemspec
 gem 'minitest', '~>5.25', require: false
 gem 'minitest-reporters', '~>1.7', require: false
 gem 'rake', '~>13.2', require: false
+gem 'rdoc', '6.15.0', require: false # GPL
 gem 'rubocop', '~>1.74', require: false
 gem 'rubocop-minitest', '~>0.38', require: false
 gem 'rubocop-performance', '~>1.25', require: false
