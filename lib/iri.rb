@@ -143,6 +143,7 @@ class Iri
     raise InvalidArguments unless hash.is_a?(Hash)
     modify_query do |params|
       hash.each do |k, v|
+        next if v.nil?
         params[k.to_s] = [] unless params[k.to_s]
         params[k.to_s] << v
       end

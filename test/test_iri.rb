@@ -254,6 +254,13 @@ class IriTest < Minitest::Test
     end
   end
 
+  def test_adds_nio
+    assert_equal(
+      'http://google.com/?b=10',
+      Iri.new('http://google.com/').add(a: nil, b: 10).to_s
+    )
+  end
+
   def test_with_alias_for_add
     assert_equal(
       'http://google.com?q=test&limit=10',
