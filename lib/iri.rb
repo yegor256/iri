@@ -4,7 +4,6 @@
 # SPDX-License-Identifier: MIT
 
 require 'uri'
-require 'cgi'
 
 # Iri is a simple, immutable URI builder with a fluent interface.
 #
@@ -378,7 +377,7 @@ class Iri
     part = part.to_s
     raise ArgumentError, "The part can't be empty" if part.empty?
     modify do |c|
-      tail = (c.path.end_with?('/') ? '' : '/') + CGI.escape(part.to_s)
+      tail = (c.path.end_with?('/') ? '' : '/') + URI.encode_www_form_component(part.to_s)
       c.path = c.path + tail
     end
   end
@@ -423,9 +422,9 @@ class Iri
   # @return [Iri] A new Iri instance with the modified query string
   def modify_query
     modify do |c|
-      params = CGI.parse(the_uri.query || '').map do |p, a|
-        [p.to_s, a.clone]
-      end.to_h
+      params = URI.decode_www_form(the_uri.query || '').each_with_object({}) do |(k, v), h|
+        (h[k] ||= []) << v
+      end
       yield(params)
       c.query = URI.encode_www_form(params)
     end
