@@ -219,7 +219,7 @@ class Iri
     raise ArgumentError, "The scheme can't be nil" if val.nil?
     val = val.to_s
     raise ArgumentError, "The scheme can't be empty" if val.empty?
-    modify do |c|
+    modify(local: false) do |c|
       c.scheme = val
     end
   end
@@ -238,7 +238,7 @@ class Iri
     raise ArgumentError, "The host can't be nil" if val.nil?
     val = val.to_s
     raise ArgumentError, "The host can't be empty" if val.empty?
-    modify do |c|
+    modify(local: false) do |c|
       c.host = val
     end
   end
@@ -259,7 +259,7 @@ class Iri
     raise ArgumentError, "The port can'be negative" if val.negative?
     raise ArgumentError, "The port can'be zero" if val.zero?
     raise ArgumentError, "The port can'be larger than 65536" if val > 65_536
-    modify do |c|
+    modify(local: false) do |c|
       c.port = val
     end
   end
@@ -406,10 +406,10 @@ class Iri
   #
   # @yield [URI] The cloned URI object for modification
   # @return [Iri] A new Iri instance with the modified URI
-  def modify
+  def modify(local: @local, safe: @safe)
     c = the_uri.clone
     yield c
-    Iri.new(c, local: @local, safe: @safe)
+    Iri.new(c, local: local, safe: safe)
   end
 
   # Creates a new Iri object after modifying the query parameters.

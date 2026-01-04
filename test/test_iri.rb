@@ -197,7 +197,7 @@ class IriTest < Minitest::Test
   def test_makes_uri_global
     assert_equal(
       'https://google.com/hello',
-      Iri.new('/hello').scheme('https').host('google.com').to_s
+      Iri.new('/hello').to_local.scheme('https').host('google.com').to_s
     )
   end
 
