@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
     'Class Iri helps you build a URI and then modify its ' \
     'parts via a simple immutable fluent interface. It always returns a new ' \
     'object instead of changing the existing one. This makes the object ' \
-    'safer and much easier for reuse.'
+    'safer and much easier to reuse.'
   s.authors = ['Yegor Bugayenko']
   s.email = 'yegor256@gmail.com'
   s.homepage = 'https://github.com/yegor256/iri'
