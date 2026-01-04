@@ -194,6 +194,13 @@ class IriTest < Minitest::Test
     end
   end
 
+  def test_makes_uri_global
+    assert_equal(
+      'https://google.com/hello',
+      Iri.new('/hello').scheme('https').host('google.com').to_s
+    )
+  end
+
   def test_rejects_nil_scheme
     assert_raises ArgumentError do
       Iri.new('http://google.com').scheme(nil)
