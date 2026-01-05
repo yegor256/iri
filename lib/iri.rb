@@ -346,9 +346,10 @@ class Iri
     path = path.to_s
     raise ArgumentError, "The path can't be empty" if path.empty?
     modify do |c|
-      c.query = nil
-      c.path = path
-      c.fragment = nil
+      s = Iri.new(path).to_uri
+      c.query = s.query
+      c.path = s.path
+      c.fragment = s.fragment
     end
   end
 

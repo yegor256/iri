@@ -142,6 +142,20 @@ class IriTest < Minitest::Test
     )
   end
 
+  def test_replaces_everything
+    assert_equal(
+      'http://localhost/boom-11',
+      Iri.new('http://localhost/hey?i=8#ops').cut('/boom-11').to_s
+    )
+  end
+
+  def test_replaces_everything_with_query
+    assert_equal(
+      'http://localhost/boom-5?a=1#ff',
+      Iri.new('http://localhost/hey?i=8#test').cut('/boom-5?a=1#ff').to_s
+    )
+  end
+
   def test_adds_query_param
     assert_equal(
       'http://google/?a=1&a=3&b=2',
