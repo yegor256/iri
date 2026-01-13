@@ -33,7 +33,7 @@ GEM
     racc (1.8.1)
     rainbow (3.1.1)
     rake (13.3.1)
-    rdoc (7.0.3)
+    rdoc (7.1.0)
       erb
       psych (>= 4.0.0)
       tsort
@@ -92,7 +92,7 @@ DEPENDENCIES
   minitest (~> 6.0)
   minitest-reporters (~> 1.7)
   rake (~> 13.2)
-  rdoc (= 7.0.3)
+  rdoc (= 7.1.0)
   rubocop (~> 1.74)
   rubocop-minitest (~> 0.38)
   rubocop-performance (~> 1.25)
