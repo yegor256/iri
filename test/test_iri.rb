@@ -110,6 +110,20 @@ class IriTest < Minitest::Test
     )
   end
 
+  def test_host_with_no_scheme
+    assert_equal(
+      'http://localhost/hi',
+      Iri.new.host('localhost').append('hi').to_s
+    )
+  end
+
+  def test_port_with_no_scheme
+    assert_equal(
+      'http://localhost:8080/',
+      Iri.new('//localhost/').port(8080).to_s
+    )
+  end
+
   def test_replaces_fragment
     assert_equal(
       'http://localhost/a/b#test%20me',

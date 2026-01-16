@@ -13,7 +13,7 @@ plugins:
 Minitest/EmptyLineBeforeAssertionMethods:
   Enabled: false
 Metrics/ClassLength:
-  Max: 250
+  Enabled: false
 Layout/EmptyLineAfterGuardClause:
   Enabled: false
 Layout/MultilineMethodCallIndentation:

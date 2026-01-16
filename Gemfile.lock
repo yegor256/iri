@@ -23,10 +23,10 @@ GEM
       minitest (>= 5.0)
       ruby-progressbar
     parallel (1.27.0)
-    parser (3.3.10.0)
+    parser (3.3.10.1)
       ast (~> 2.4.1)
       racc
-    prism (1.7.0)
+    prism (1.8.0)
     psych (5.3.1)
       date
       stringio

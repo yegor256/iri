@@ -239,6 +239,7 @@ class Iri
     val = val.to_s
     raise ArgumentError, "The host can't be empty" if val.empty?
     modify(local: false) do |c|
+      c.scheme ||= 'http'
       c.host = val
     end
   end
@@ -260,6 +261,7 @@ class Iri
     raise ArgumentError, "The port can'be zero" if val.zero?
     raise ArgumentError, "The port can'be larger than 65536" if val > 65_536
     modify(local: false) do |c|
+      c.scheme ||= 'http'
       c.port = val
     end
   end
