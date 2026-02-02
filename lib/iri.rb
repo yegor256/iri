@@ -299,7 +299,7 @@ class Iri
     raise ArgumentError, "The fragment can't be nil" if val.nil?
     val = val.to_s
     modify do |c|
-      c.fragment = val.to_s
+      c.fragment = val.empty? ? nil : val
     end
   end
 

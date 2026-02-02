@@ -135,6 +135,14 @@ class IriTest < Minitest::Test
     )
   end
 
+  def test_removes_fragment_with_empty_string
+    assert_equal(
+      'http://localhost/hey?i=8',
+      Iri.new('http://localhost/hey?i=8#test').fragment('').to_s,
+      'Empty fragment must not produce trailing hash mark'
+    )
+  end
+
   def test_sets_path
     assert_equal(
       'http://localhost/hey/you?i=8#test',
