@@ -149,6 +149,14 @@ class IriTest < Minitest::Test
     )
   end
 
+  def test_removes_query_with_empty_string
+    assert_equal(
+      'http://localhost/hey#test',
+      Iri.new('http://localhost/hey?i=8#test').query('').to_s,
+      'Empty query string must not produce trailing question mark'
+    )
+  end
+
   def test_removes_path
     assert_equal(
       'http://localhost/',

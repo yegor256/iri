@@ -321,7 +321,7 @@ class Iri
     raise ArgumentError, "The query can't be nil" if val.nil?
     val = val.to_s
     modify do |c|
-      c.query = val
+      c.query = val.empty? ? nil : val
     end
   end
 
