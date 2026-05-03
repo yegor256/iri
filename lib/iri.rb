@@ -257,9 +257,9 @@ class Iri
   def port(val)
     raise ArgumentError, "The port can't be nil" if val.nil?
     val = val.to_i
-    raise ArgumentError, "The port can'be negative" if val.negative?
-    raise ArgumentError, "The port can'be zero" if val.zero?
-    raise ArgumentError, "The port can'be larger than 65536" if val > 65_536
+    raise ArgumentError, "The port can't be negative" if val.negative?
+    raise ArgumentError, "The port can't be zero" if val.zero?
+    raise ArgumentError, "The port can't be larger than 65536" if val > 65_536
     modify(local: false) do |c|
       c.scheme ||= 'http'
       c.port = val
@@ -366,7 +366,7 @@ class Iri
   #
   # @example Appending to a path with a trailing slash
   #   Iri.new('https://example.com/a/').append('hello')
-  #   # => "https://example.com/a/hello?q=test"
+  #   # => "https://example.com/a/hello"
   #
   # @example Appending a segment that needs URL encoding
   #   Iri.new('https://example.com/docs').append('section 1')
