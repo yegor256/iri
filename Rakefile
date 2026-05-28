@@ -3,9 +3,9 @@
 # SPDX-FileCopyrightText: Copyright (c) 2019-2026 Yegor Bugayenko
 # SPDX-License-Identifier: MIT
 
-require 'rubygems'
 require 'rake'
 require 'rake/clean'
+require 'rubygems'
 
 CLEAN.include('coverage')
 

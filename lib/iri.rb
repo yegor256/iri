@@ -60,7 +60,7 @@ class Iri
   # @param [Boolean] safe When true, prevents InvalidURI exceptions
   # @raise [InvalidURI] If the URI is malformed and safe is false
   def initialize(uri = '', local: false, safe: true)
-    raise ArgumentError, "The uri can't be nil" if uri.nil?
+    raise(ArgumentError, "The uri can't be nil") if uri.nil?
     @uri = uri.to_s
     @local = local
     @safe = safe
@@ -138,9 +138,9 @@ class Iri
   # @see #del
   # @see #over
   def add(hash)
-    raise ArgumentError, "The hash can't be nil" if hash.nil?
-    raise InvalidArguments unless hash.is_a?(Hash)
-    modify_query do |params|
+    raise(ArgumentError, "The hash can't be nil") if hash.nil?
+    raise(InvalidArguments) unless hash.is_a?(Hash)
+    requery do |params|
       hash.each do |k, v|
         next if v.nil?
         params[k.to_s] = [] unless params[k.to_s]
@@ -167,7 +167,7 @@ class Iri
   # @see #add
   # @see #over
   def del(*keys)
-    modify_query do |params|
+    requery do |params|
       keys.each do |k|
         params.delete(k.to_s)
       end
@@ -195,9 +195,9 @@ class Iri
   # @see #add
   # @see #del
   def over(hash)
-    raise ArgumentError, "The hash can't be nil" if hash.nil?
-    raise InvalidArguments unless hash.is_a?(Hash)
-    modify_query do |params|
+    raise(ArgumentError, "The hash can't be nil") if hash.nil?
+    raise(InvalidArguments) unless hash.is_a?(Hash)
+    requery do |params|
       hash.each do |k, v|
         params[k.to_s] = [] unless params[k.to_s]
         params[k.to_s] = [v]
@@ -216,9 +216,9 @@ class Iri
   # @see #host
   # @see #port
   def scheme(val)
-    raise ArgumentError, "The scheme can't be nil" if val.nil?
+    raise(ArgumentError, "The scheme can't be nil") if val.nil?
     val = val.to_s
-    raise ArgumentError, "The scheme can't be empty" if val.empty?
+    raise(ArgumentError, "The scheme can't be empty") if val.empty?
     modify(local: false) do |c|
       c.scheme = val
     end
@@ -235,9 +235,9 @@ class Iri
   # @see #scheme
   # @see #port
   def host(val)
-    raise ArgumentError, "The host can't be nil" if val.nil?
+    raise(ArgumentError, "The host can't be nil") if val.nil?
     val = val.to_s
-    raise ArgumentError, "The host can't be empty" if val.empty?
+    raise(ArgumentError, "The host can't be empty") if val.empty?
     modify(local: false) do |c|
       c.scheme ||= 'http'
       c.host = val
@@ -255,11 +255,11 @@ class Iri
   # @see #scheme
   # @see #host
   def port(val)
-    raise ArgumentError, "The port can't be nil" if val.nil?
-    val = val.to_i
-    raise ArgumentError, "The port can't be negative" if val.negative?
-    raise ArgumentError, "The port can't be zero" if val.zero?
-    raise ArgumentError, "The port can't be larger than 65536" if val > 65_536
+    raise(ArgumentError, "The port can't be nil") if val.nil?
+    val = Integer(val)
+    raise(ArgumentError, "The port can't be negative") if val.negative?
+    raise(ArgumentError, "The port can't be zero") if val.zero?
+    raise(ArgumentError, "The port can't be larger than 65536") if val > 65_536
     modify(local: false) do |c|
       c.scheme ||= 'http'
       c.port = val
@@ -277,9 +277,9 @@ class Iri
   # @see #query
   # @see #fragment
   def path(val)
-    raise ArgumentError, "The path can't be nil" if val.nil?
+    raise(ArgumentError, "The path can't be nil") if val.nil?
     val = val.to_s
-    raise ArgumentError, "The path can't be empty" if val.empty?
+    raise(ArgumentError, "The path can't be empty") if val.empty?
     modify do |c|
       c.path = val
     end
@@ -296,7 +296,7 @@ class Iri
   # @see #path
   # @see #query
   def fragment(val)
-    raise ArgumentError, "The fragment can't be nil" if val.nil?
+    raise(ArgumentError, "The fragment can't be nil") if val.nil?
     val = val.to_s
     modify do |c|
       c.fragment = val.empty? ? nil : val
@@ -318,7 +318,7 @@ class Iri
   # @see #del
   # @see #over
   def query(val)
-    raise ArgumentError, "The query can't be nil" if val.nil?
+    raise(ArgumentError, "The query can't be nil") if val.nil?
     val = val.to_s
     modify do |c|
       c.query = val.empty? ? nil : val
@@ -344,9 +344,9 @@ class Iri
   # @see #query
   # @see #fragment
   def cut(path = '/')
-    raise ArgumentError, "The path can't be nil" if path.nil?
+    raise(ArgumentError, "The path can't be nil") if path.nil?
     path = path.to_s
-    raise ArgumentError, "The path can't be empty" if path.empty?
+    raise(ArgumentError, "The path can't be empty") if path.empty?
     modify do |c|
       s = Iri.new(path).to_uri
       c.query = s.query
@@ -376,12 +376,11 @@ class Iri
   # @return [Iri] A new Iri instance
   # @see #path
   def append(part)
-    raise ArgumentError, "The part can't be nil" if part.nil?
+    raise(ArgumentError, "The part can't be nil") if part.nil?
     part = part.to_s
-    raise ArgumentError, "The part can't be empty" if part.empty?
+    raise(ArgumentError, "The part can't be empty") if part.empty?
     modify do |c|
-      tail = (c.path.end_with?('/') ? '' : '/') + URI.encode_www_form_component(part.to_s)
-      c.path = c.path + tail
+      c.path = c.path + ((c.path.end_with?('/') ? '' : '/') + URI.encode_www_form_component(part.to_s))
     end
   end
 
@@ -398,7 +397,7 @@ class Iri
   def the_uri
     @the_uri ||= URI(@uri)
   rescue URI::InvalidURIError => e
-    raise InvalidURI, e.message unless @safe
+    raise(InvalidURI, e.message) unless @safe
     @the_uri = URI('/')
   end
 
@@ -411,7 +410,7 @@ class Iri
   # @return [Iri] A new Iri instance with the modified URI
   def modify(local: @local, safe: @safe)
     c = the_uri.clone
-    yield c
+    yield(c)
     Iri.new(c, local: local, safe: safe)
   end
 
@@ -423,11 +422,12 @@ class Iri
   #
   # @yield [Hash] The parsed query parameters for modification
   # @return [Iri] A new Iri instance with the modified query string
-  def modify_query
+  def requery
     modify do |c|
-      params = URI.decode_www_form(the_uri.query || '').each_with_object({}) do |(k, v), h|
-        (h[k] ||= []) << v
-      end
+      params =
+        URI.decode_www_form(the_uri.query || '').each_with_object({}) do |(k, v), h|
+          (h[k] ||= []) << v
+        end
       yield(params)
       c.query = URI.encode_www_form(params)
     end
