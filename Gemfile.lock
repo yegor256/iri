@@ -60,7 +60,7 @@ GEM
     rubocop-elegant (0.7.1)
       lint_roller (~> 1.1)
       rubocop (~> 1.75)
-    rubocop-minitest (0.39.1)
+    rubocop-minitest (0.40.0)
       lint_roller (~> 1.1)
       rubocop (>= 1.75.0, < 2.0)
       rubocop-ast (>= 1.38.0, < 2.0)
