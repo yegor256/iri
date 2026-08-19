@@ -259,7 +259,7 @@ class Iri
     val = Integer(val)
     raise(ArgumentError, "The port can't be negative") if val.negative?
     raise(ArgumentError, "The port can't be zero") if val.zero?
-    raise(ArgumentError, "The port can't be larger than 65536") if val > 65_536
+    raise(ArgumentError, "The port can't be larger than 65535") if val > 65_535
     modify(local: false) do |c|
       c.scheme ||= 'http'
       c.port = val
