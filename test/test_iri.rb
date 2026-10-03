@@ -255,4 +255,14 @@ class IriTest < Minitest::Test
   def test_without_alias_for_del
     assert_equal('http://google.com/?b=2', Iri.new('http://google.com/?a=1&b=2&c=3').without(:a, :c).to_s)
   end
+  def test_rejects_port_65536
+    assert_raises(ArgumentError) do
+      Iri.new('http://google.com').port(65_536)
+    end
+  end
+
+  def test_accepts_port_65535
+    assert_equal('http://google.com:65535/', Iri.new('http://google.com').port(65_535).to_s)
+  end
+
 end
