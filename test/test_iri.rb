@@ -202,6 +202,16 @@ class IriTest < Minitest::Test
     end
   end
 
+  def test_rejects_too_large_port
+    assert_raises(ArgumentError) do
+      Iri.new('http://google.com').port(65_536)
+    end
+  end
+
+  def test_accepts_highest_port
+    assert_equal('http://google.com:65535/', Iri.new('http://google.com/').port(65_535).to_s)
+  end
+
   def test_rejects_nil_path
     assert_raises(ArgumentError) do
       Iri.new('http://google.com').path(nil)
