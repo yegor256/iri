@@ -425,11 +425,13 @@ class Iri
   def requery
     modify do |c|
       params =
-        URI.decode_www_form(the_uri.query || '').each_with_object({}) do |(k, v), h|
-          (h[k] ||= []) << v
+        (the_uri.query || '').split('&').each_with_object({}) do |pair, h|
+          next if pair.empty?
+          k, v = URI.decode_www_form(pair).first
+          (h[k] ||= []) << (pair.include?('=') ? v : nil)
         end
       yield(params)
-      c.query = URI.encode_www_form(params)
+      c.query = URI.encode_www_form(params.flat_map { |k, vs| vs.map { |v| [k, v] } })
     end
   end
 end
