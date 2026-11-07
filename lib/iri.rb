@@ -412,6 +412,9 @@ class Iri
     c = the_uri.clone
     yield(c)
     Iri.new(c, local: local, safe: safe)
+  rescue URI::Error
+    raise unless safe
+    Iri.new(@uri, local: local, safe: safe)
   end
 
   # Creates a new Iri object after modifying the query parameters.
