@@ -11,7 +11,7 @@ GEM
     builder (3.3.0)
     drb (2.2.3)
     erb (6.0.7)
-    json (2.21.2)
+    json (3.1.0)
     language_server-protocol (3.17.0.6)
     lint_roller (1.1.0)
     logger (1.7.0)
