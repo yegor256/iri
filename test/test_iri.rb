@@ -93,7 +93,7 @@ class IriTest < Minitest::Test
     assert_equal('http://x.test/hey?i=8', Iri.new('http://x.test/hey?i=8').query('a%zz').to_s)
   end
 
-  def test_broken_port_in_safe_mode
+  def test_rejects_port_above_the_maximum_in_safe_mode
     assert_raises(ArgumentError) do
       Iri.new('http://x.test', safe: true).port(65_536)
     end
