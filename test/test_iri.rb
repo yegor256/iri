@@ -174,6 +174,23 @@ class IriTest < Minitest::Test
     assert_equal('http://google/?a=hey&b=2&c=3', Iri.new('http://google/?a=1&b=2&c=3&a=33').over(a: 'hey').to_s)
   end
 
+  def test_keeps_valueless_query_param_on_add
+    assert_equal('http://google/?debug&page=2', Iri.new('http://google/?debug').add(page: 2).to_s)
+  end
+
+  def test_keeps_valueless_query_param_on_over
+    assert_equal('http://google/?debug&page=3', Iri.new('http://google/?debug&page=2').over(page: 3).to_s)
+  end
+
+  def test_deletes_valueless_query_param
+    assert_equal('http://google/?page=2', Iri.new('http://google/?debug&page=2').del(:debug).to_s)
+  end
+
+  def test_keeps_valueless_query_param_with_values
+    assert_equal('http://google/?debug&b=2', Iri.new('http://google/?debug&a=1').del(:a).add(b: 2).to_s)
+    assert_equal('http://google/?a=&debug&b=2', Iri.new('http://google/?a=&debug').add(b: 2).to_s)
+  end
+
   def test_rejects_nil_uri
     assert_raises(ArgumentError) do
       Iri.new(nil)
