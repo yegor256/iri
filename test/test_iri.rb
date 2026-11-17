@@ -71,6 +71,34 @@ class IriTest < Minitest::Test
     Iri.new('https://example.com/>>>').add(a: 1)
   end
 
+  def test_broken_host_in_safe_mode
+    assert_equal('http://x.test/hey?i=8', Iri.new('http://x.test/hey?i=8').host('bad host').to_s)
+  end
+
+  def test_broken_host_in_strict_mode
+    assert_raises(URI::InvalidComponentError) do
+      Iri.new('http://x.test/hey?i=8', safe: false).host('bad host')
+    end
+  end
+
+  def test_broken_scheme_in_safe_mode
+    assert_equal('http://x.test/hey?i=8', Iri.new('http://x.test/hey?i=8').scheme('bad scheme').to_s)
+  end
+
+  def test_broken_path_in_safe_mode
+    assert_equal('http://x.test/hey?i=8', Iri.new('http://x.test/hey?i=8').path('bad path').to_s)
+  end
+
+  def test_broken_query_in_safe_mode
+    assert_equal('http://x.test/hey?i=8', Iri.new('http://x.test/hey?i=8').query('a%zz').to_s)
+  end
+
+  def test_rejects_port_above_the_maximum_in_safe_mode
+    assert_raises(ArgumentError) do
+      Iri.new('http://x.test', safe: true).port(65_536)
+    end
+  end
+
   def test_starts_with_empty_uri
     assert_equal('https:', Iri.new.scheme('https').to_s)
   end
