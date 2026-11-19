@@ -219,6 +219,30 @@ class IriTest < Minitest::Test
     assert_equal('http://google/?a=&debug&b=2', Iri.new('http://google/?a=&debug').add(b: 2).to_s)
   end
 
+  def test_replaces_query_param_with_nil
+    assert_equal(
+      'http://google/',
+      Iri.new('http://google/?a=1').over(a: nil).to_s,
+      'Nil value in over must remove the parameter, not leave a dangling question mark'
+    )
+  end
+
+  def test_replaces_query_param_with_nil_keeps_others
+    assert_equal(
+      'http://google/?b=2',
+      Iri.new('http://google/?a=1&b=2').over(a: nil).to_s,
+      'Nil value in over must remove only the nil-valued parameter'
+    )
+  end
+
+  def test_del_of_last_param_leaves_no_question_mark
+    assert_equal(
+      'http://google/',
+      Iri.new('http://google/?a=1').del('a').to_s,
+      'Removing the last query parameter must not leave a dangling question mark'
+    )
+  end
+
   def test_rejects_nil_uri
     assert_raises(ArgumentError) do
       Iri.new(nil)
