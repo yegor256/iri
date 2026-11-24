@@ -6,7 +6,8 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    ansi (1.6.0)
+    ansi (1.6.1)
+      logger
     ast (2.4.3)
     builder (3.3.0)
     drb (2.2.3)
