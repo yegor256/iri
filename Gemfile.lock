@@ -83,7 +83,7 @@ GEM
     unicode-display_width (3.3.0)
       unicode-emoji (~> 4.3)
     unicode-emoji (4.3.0)
-    yard (0.9.45)
+    yard (0.9.46)
 
 PLATFORMS
   arm64-darwin-23
