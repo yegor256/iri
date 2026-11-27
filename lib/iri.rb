@@ -179,7 +179,7 @@ class Iri
   #
   # Unlike #add, this method replaces any existing parameters with the same name
   # rather than adding additional instances. If a parameter doesn't exist,
-  # it will be added.
+  # it will be added. If the value is nil, the parameter is removed.
   #
   # @example Replacing a query parameter
   #   Iri.new('https://google.com?q=test').over(q: 'hey you!')
@@ -188,6 +188,10 @@ class Iri
   # @example Replacing multiple parameters
   #   Iri.new('https://google.com?q=test&limit=5').over(q: 'books', limit: 10)
   #   # => "https://google.com?q=books&limit=10"
+  #
+  # @example Removing a query parameter with a nil value
+  #   Iri.new('https://google.com?q=test&limit=5').over(q: nil)
+  #   # => "https://google.com?limit=5"
   #
   # @param [Hash] hash Hash of parameter names/values to replace in the query part
   # @return [Iri] A new Iri instance
@@ -199,8 +203,12 @@ class Iri
     raise(InvalidArguments) unless hash.is_a?(Hash)
     requery do |params|
       hash.each do |k, v|
-        params[k.to_s] = [] unless params[k.to_s]
-        params[k.to_s] = [v]
+        if v.nil?
+          params.delete(k.to_s)
+        else
+          params[k.to_s] = [] unless params[k.to_s]
+          params[k.to_s] = [v]
+        end
       end
     end
   end
@@ -434,7 +442,8 @@ class Iri
           (h[k] ||= []) << (pair.include?('=') ? v : nil)
         end
       yield(params)
-      c.query = URI.encode_www_form(params.flat_map { |k, vs| vs.map { |v| [k, v] } })
+      form = URI.encode_www_form(params.flat_map { |k, vs| vs.map { |v| [k, v] } })
+      c.query = form.empty? ? nil : form
     end
   end
 end
